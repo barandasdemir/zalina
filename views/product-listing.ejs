@@ -1,0 +1,45 @@
+<%- include partials/header %>
+
+<div class="row">
+    <ul class="collection col s12 m2">
+        <%- include partials/sidemenu %>
+    </ul>
+
+    <h5 class="col s12 m3 offset-m1">
+        <%- productType %>
+    </h5>
+
+    <br><br><br>
+
+    <div style="margin-left:250px;">
+
+        <% listing.forEach((item, index) => { %>
+        <% if (index % 4 === 0) { %>
+        <div class="row">
+            <% } %>
+            <div class="col s10 m3">
+                <div class="card z-depth-0">
+                    <a href="/product/<%= item.id %>">
+                        <div class="card-image">
+                            <img src="https://via.placeholder.com/150x150.jpg">
+                            <span class="card-title black-text">
+                                <%= item.price.toFixed(2) %> ₺
+                            </span>
+                        </div>
+                        <div class="card-content center black-text">
+                            <p>
+                                <%= item.name %>
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <% if (index % 4 === 3) { %>
+        </div>
+        <% } %>
+        <% }); %>
+
+    </div>
+</div>
+
+<%- include partials/footer %>

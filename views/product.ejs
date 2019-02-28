@@ -1,0 +1,49 @@
+<%- include partials/header %>
+
+<div class="row">
+    <img src="https://via.placeholder.com/600x900.jpg?text=insert+image+here" class="col s12 m3 offset-m1" />
+    <img src="https://via.placeholder.com/600x900.jpg?text=insert+image+here" class="col s12 m3" />
+    <div id="product" class="col s6 m3 section scrollspy">
+        <h4><%= product.name %></h4>
+        <h5><%= product.price.toFixed(2) %> ₺</h5>
+        <br><br>
+        <div class="input-field black-text">
+            <select>
+                <option value="1">Siyah</option>
+                <option value="2">Kırmızı</option>
+                <option value="3">Mavi</option>
+            </select>
+            <label>Renk</label>
+        </div>
+        <br>
+        <div class="input-field black-text">
+            <select>
+                <option value="1">XS</option>
+                <option value="2">S</option>
+                <option value="3">M</option>
+                <option value="4">L</option>
+                <option value="5">XL</option>
+            </select>
+            <label>Beden</label>
+        </div>
+        <br>
+        <a class="waves-effect waves-light btn black white-text col s12 m12 valign-wrapper">
+            <i class="material-icons left">shopping_cart</i>
+            <b class="center">Ekle</b>
+        </a>
+    </div>
+</div>
+<br>
+<div class="row">
+    <h5 class="col s10 m10 offset-m1 center">
+        <%= product.description %>
+    </h5>
+</div>
+
+<div class="row" style="margin: 3em 5%">
+    <img src="https://via.placeholder.com/600x900.jpg?text=insert+image+here" class="col s12 m4" />
+    <img src="https://via.placeholder.com/600x900.jpg?text=insert+image+here" class="col s12 m4" />
+    <img src="https://via.placeholder.com/600x900.jpg?text=insert+image+here" class="col s12 m4" />
+</div>
+
+<%- include partials/footer %>

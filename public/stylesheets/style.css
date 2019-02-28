@@ -1,0 +1,53 @@
+nav.nav-extended .nav-wrapper {
+    line-height: 50px;
+    min-height: 50px;
+}
+
+nav.nav-extended .nav-wrapper i {
+    line-height: inherit;
+    height: inherit;
+    font-size: 1.2em;
+}
+
+li {
+    outline-style: none;
+}
+
+#dropdown-cart {
+    text-align: center;
+}
+
+.collection .collection-item {
+    border: none;
+}
+
+.collection-item a {
+    border: none;
+    color: black;
+    text-decoration: none;
+}
+
+.collection-item a:hover {
+    text-decoration: underline;
+}
+
+.lostpwd {
+    margin: 1em auto;
+    text-decoration: underline;
+}
+
+.switch {
+    margin: 1em auto;
+}
+
+.dropdown-content li>span {
+    color: black;
+}
+
+.select-wrapper input.select-dropdown  {
+    border-color: darkgrey;
+}
+
+.select-wrapper input.select-dropdown:focus {
+    border-color: black;
+}

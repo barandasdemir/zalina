@@ -1,0 +1,36 @@
+<%- include partials/header %>
+
+<div class="row" style="margin-top:2rem">
+    <h5 class="center">Oturum aç</h5>
+    <form class="col s12 m4 offset-m4">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">E-posta</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Parola</label>
+            </div>
+            <div class="switch">
+                <label>
+                    <input type="checkbox">
+                    <span class="lever"></span>
+                    Oturumu açık tut
+                </label>
+            </div>
+        </div>
+
+        <a class="waves-effect waves-light btn black white-text col s12 m12">Oturum Aç</a>
+    </form>
+    <div class="row">
+        <a href="/login/lostpassword" class="col s12 m6 right black-text lostpwd">Parolanızı mı unuttunuz?</a>
+    </div>
+    <div class="row">
+        <a href="/register" class="waves-effect waves-light btn grey lighten-2 black-text col s12 m4 offset-m4 z-depth-0">Bize katılın</a>
+    </div>
+</div>
+
+<%- include partials/footer %>
