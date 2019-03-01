@@ -17,6 +17,10 @@ li {
     text-align: center;
 }
 
+.collection {
+    border: none;
+}
+
 .collection .collection-item {
     border: none;
 }

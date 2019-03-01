@@ -3,7 +3,7 @@ exports.up = function (knex, Promise) {
         table.increments();
         table.string('email').notNullable();
         table.string('password').notNullable();
-        table.binary('isAdmin').defaultTo(0);
+        // table.binary('isAdmin').defaultTo(0);
         table.timestamps();
     });
 };
