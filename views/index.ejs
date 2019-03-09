@@ -1,30 +1,56 @@
+<%if(activeSession === -1){%>
 <%- include partials/header %>
+<%} else{%>
+<%- include partials/header-logged%>
+<%};%>
 
 <div class="container">
-    <div class="row">
-        <img class="col s12 m10 offset-m1" src="https://via.placeholder.com/960x640.jpg?text=insert+image+here" />
+    <div style="margin: 3px; border-radius: 3px;" class="hoverable row green darken-4 ">
+
+        <h4 style="font-style: oblique;" class="col s12 m12 l12 center-align white-text">%50 indirim
+            şansını kaçırma!</h4>
+        <h6 style="font-size: 10px;" class="col s12 m12 l12 center-align white-text">Seçili ürünlerde geçerlidir,
+            stoklarla sınırlıdır. Fırsat
+            ürünleri mağazalarda ve hm.com’da farklılık
+            gösterebilir.</h6>
+
+        <nav style="margin-top: 2px;" class="light-green darken-1 col s12 m12 l12 center-align white-text">
+            <div class="nav-wrapper">
+                <div class="col s12 ">
+                    <a href="#!" style="font-size: 10px; padding: 3px;" class="hoverable">Erkek</a>
+                    <a href="#!" style="font-size: 10px; padding: 3px;" class="hoverable">Kadın</a>
+                    <a href="#!" style="font-size: 10px; padding: 3px;" class="hoverable">Çocuk</a>
+                </div>
+            </div>
+        </nav>
+
+
     </div>
     <br>
     <div class="row">
-        <img class="col s12 m10 offset-m1" src="https://via.placeholder.com/960x640.jpg?text=insert+image+here" />
+
     </div>
     <br>
     <div class="row">
-        <img class="col s12 m10 offset-m1" src="https://via.placeholder.com/960x640.jpg?text=insert+image+here" />
+        <img class="hoverable col s12 m10 offset-m1"
+            src="https://images.unsplash.com/photo-1525119466982-286fa4d7cf5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80" />
     </div>
     <br>
     <div class="row">
         <div class="col s12 m10 offset-m1">
             <div class="row">
-                <img src="https://via.placeholder.com/300x500.jpg?text=insert+image+here" class="col 12s 4m" />
-                <img src="https://via.placeholder.com/300x500.jpg?text=insert+image+here" class="col 12s 4m" />
-                <img src="https://via.placeholder.com/300x500.jpg?text=insert+image+here" class="col 12s 4m" />
-            </div>
+                <img src="https://images.unsplash.com/photo-1505734169265-a86113baa6c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80 334w"
+                    class="hoverable col 12s 4m l4" />
+                <img src="https://images.unsplash.com/photo-1505734169265-a86113baa6c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80 334w"
+                    class="hoverable col 12s 4m l4" />
+                <img src="https://images.unsplash.com/photo-1505734169265-a86113baa6c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80 334w"
+                    class="hoverable col 12s 4m l4" /> </div>
         </div>
     </div>
     <br>
-    <div class="row">
-        <img class="col s12 m10 l10 offset-m1 offset-l1" src="https://via.placeholder.com/960x640.jpg?text=insert+image+here" />
+    <div class="row hoverable">
+        <img class="col s12 m10 l10 offset-m1 offset-l1"
+            src="https://images.unsplash.com/photo-1525545073321-a0c3bc5f4c1b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" />
     </div>
 </div>
 

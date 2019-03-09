@@ -5,9 +5,11 @@ const util = require('../lib/util');
 
 // mounts to /
 router.get('/', (req, res, next) => {
-    res.render('index', {
-        title: 'Zalina | Ana sayfa',
-    });
+    console.log(req.session.userid);
+    (req.session.userid) ? res.render('index', {
+        title: 'Zalina | Ana sayfa', activeSession: req.session
+    }) : res.render('index', { title: 'Zalina | Ana sayfa', activeSession: -1 })
+
 });
 
 // mounts to /category/productType
@@ -19,11 +21,18 @@ router.get('/:cat/:type?', (req, res, next) => {
                 if (!req.params.type) {
                     // product type is not specified
                     // render the category page
-                    res.render('category', {
+                    (req.session.userid) ? res.render('category', {
                         title: `Zalina - ${header.categories[index]}`,
                         category,
+                        activeSession: req.session,
+                        sidemenu: types
+                    }) : res.render('category', {
+                        title: `Zalina - ${header.categories[index]}`,
+                        category,
+                        activeSession: -1,
                         sidemenu: types
                     });
+
                 } else {
                     const typeIndex = types
                         .map(type => util.toEn(type))
@@ -35,13 +44,23 @@ router.get('/:cat/:type?', (req, res, next) => {
                         // get that type's listing
                         db.getProductListing(header.categories[index], productType).then(listing => {
                             // then render it's listing page
-                            res.render('product-listing', {
+
+                            (req.session.userid) ? res.render('product-listing', {
                                 title: `Zalina - ${productType}`,
                                 category,
                                 sidemenu: types,
                                 productType,
+                                activeSession: req.session,
+                                listing
+                            }) : res.render('product-listing', {
+                                title: `Zalina - ${productType}`,
+                                category,
+                                sidemenu: types,
+                                activeSession: -1,
+                                productType,
                                 listing
                             });
+
                         });
                     } else {
                         // if given type is not an actual product type

@@ -7,12 +7,20 @@ const util = require('../lib/util');
 router.get('/:id', (req, res, next) => {
     db.getProductById(req.params.id).then(product => {
         if (product.length > 0) {
-            res.render('product', {
-                title: 'Zalina | Oturum Aç',
+            (req.session.userid) ? res.render('product', {
+                title: 'Zalina | Ürünler',
                 categories,
+                links,
+                activeSession: req.session,
+                product: product[0]
+            }) : res.render('product', {
+                title: 'Zalina | Ürünler',
+                categories,
+                activeSession: -1,
                 links,
                 product: product[0]
             });
+
         } else {
             next();
         }

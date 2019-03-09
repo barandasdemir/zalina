@@ -1,4 +1,8 @@
+<%if(activeSession === -1){%>
 <%- include partials/header %>
+<%} else{%>
+<%- include partials/header-logged%>
+<%};%>
 
 <div class="row">
     <ul class="collection col s12 m2">

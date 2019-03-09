@@ -5,7 +5,8 @@ module.exports = {
             host: '127.0.0.1',
             database: 'zalina',
             user: 'zalina',
-            password: '123'
+            password: '123',
+            charset: 'utf8'
         }
     }
 };

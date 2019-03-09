@@ -4,24 +4,23 @@ const userModel = require('../models/user');
 
 // mounts to /auth/login
 router.get('/login', (req, res, next) => {
-    res.render('login', {
-        title: 'Zalina | Oturum Aç',
-    });
+    (req.session.userid) ? res.render('login', {
+        title: 'Zalina | Profil', activeSession: req.session, wrongPass: 0
+    }) : res.render('login', { title: 'Zalina | Oturum aç', activeSession: -1, wrongPass: 0 })
 });
 
 // mounts to /auth/register
 router.get('/register', (req, res, next) => {
-    res.render('register', {
-        title: 'Zalina | Kayıt',
-    });
+    (req.session.userid) ? res.render('register', {
+        title: 'Zalina | Kayıt', activeSession: req.session
+    }) : res.render('register', { title: 'Zalina | Kayıt', activeSession: -1 })
 });
 
 router.post('/register/new-user', async (req, res, next) => {
     if (!req.body.agreement) {
-        return res.render('register', {
-            title: 'Zalina | Kayıt',
-            message: 'you have to agree, you know'
-        });
+        (req.session.userid) ? res.render('register', {
+            title: 'Zalina | Kayıt', activeSession: req.session
+        }) : res.render('register', { title: 'Zalina | Kayıt', activeSession: -1 })
     }
     try {
         await userModel.schema.validate(req.body);
