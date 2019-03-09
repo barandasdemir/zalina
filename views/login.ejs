@@ -1,13 +1,8 @@
-<%if(activeSession === -1){%>
 <%- include partials/header %>
-<%} else{%>
-<%- include partials/header-logged%>
-<%};%>
-
 
 <div class="row" style="margin-top:2rem">
     <h5 class="center">Oturum aç</h5>
-    <form method="POST" action="/login/userlogin" class="col s12 m4 offset-m4">
+    <form method="POST" action="/login" class="col s12 m4 offset-m4">
         <div class="row">
             <div class="input-field col s12">
                 <input id="email" name="email" type="email" class="validate">
@@ -33,16 +28,15 @@
                 </label>
             </div>
         </div>
-
-        <button type="submit" class="waves-effect waves-light btn light-green white-text col s12 m12">Oturum Aç</button>
+        <button type="submit" class="waves-effect waves-light btn light-green darken-4 white-text col s12 m12">Oturum Aç</button>
     </form>
     <div class="row">
-        <a href="lost-password" class="col s12 m6 right black-text lostpwd">Parolanızı mı unuttunuz?</a>
+        <a href="/login/lost-password" class="col s12 m6 right black-text lostpwd">Parolanızı mı unuttunuz?</a>
     </div>
     <div class="row">
-        <a href="register"
-            class="waves-effect waves-light btn grey lighten-2 black-text col s12 m4 offset-m4 z-depth-0">Bize
-            katılın</a>
+        <a href="/register" class="waves-effect waves-light btn grey lighten-2 black-text col s12 m4 offset-m4 z-depth-0">
+            Bize katılın
+        </a>
     </div>
 </div>
 

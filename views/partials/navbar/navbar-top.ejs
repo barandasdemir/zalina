@@ -9,12 +9,15 @@
         <li>
 
             <a href="/login" style="font-size: 12px;" class="white-text valign-wrapper">
+                <% if (activeSession === -1) { %>
                 <i class="material-icons left">person</i>Oturum Aç
+                <% } else { %>
+                <i class="material-icons left">person</i>Profilim
+                <% }%>
             </a>
         </li>
         <li>
-
-            <a href="" style="font-size: 12px;" class="white-text valign-wrapper">
+            <a href="#" style="font-size: 12px;" class="white-text valign-wrapper">
                 <i class="material-icons left">favorite</i> Favorilerim
             </a>
         </li>
