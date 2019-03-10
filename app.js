@@ -8,8 +8,8 @@ const session = require('express-session');
 const locals = require('./locals');
 
 const indexRouter = require('./routes/index');
-const authRouter = require('./routes/auth');
 const productRouter = require('./routes/product');
+const registerRouter = require('./routes/register');
 const loginRouter = require('./routes/login');
 
 const app = express();
@@ -27,10 +27,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'zal', resave: false, saveUninitialized: false }));
 
-app.use(indexRouter);
-app.use(authRouter);
-app.use('/product', productRouter);
+app.use('/', indexRouter);
+app.use('/register', registerRouter);
 app.use('/login', loginRouter);
+app.use('/product', productRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

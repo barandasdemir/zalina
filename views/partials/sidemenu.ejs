@@ -7,7 +7,7 @@
         itemFixed = itemFixed.replace(new RegExp('['+key+']','g'), trMap[key]);
     }
     %>
-    <a href="/<%= category %>/<%- itemFixed %>">
+    <a href="/<% if (category) { %><%= category %><% } %>/<%- itemFixed %>">
         <%- item %>
     </a>
 </li>
