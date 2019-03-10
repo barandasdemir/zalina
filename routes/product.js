@@ -6,21 +6,13 @@ const util = require('../lib/util');
 // mounts to /product/id
 router.get('/:id', (req, res, next) => {
     db.getProductById(req.params.id).then(product => {
+        const activeSession = (req.session.userid) ? req.session : -1;
         if (product.length > 0) {
-            (req.session.userid) ? res.render('product', {
+            res.render('product', {
                 title: 'Zalina | Ürünler',
-                categories,
-                links,
-                activeSession: req.session,
-                product: product[0]
-            }) : res.render('product', {
-                title: 'Zalina | Ürünler',
-                categories,
-                activeSession: -1,
-                links,
+                activeSession,
                 product: product[0]
             });
-
         } else {
             next();
         }
