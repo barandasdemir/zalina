@@ -14,12 +14,9 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "http-errors": "^1.6.3",
-    "install": "^0.12.2",
     "knex": "^0.16.3",
     "morgan": "~1.9.0",
     "mysql2": "^1.6.5",
-    "npm": "^6.8.0",
-    "npx": "^10.2.0",
     "yup": "^0.26.10"
   },
   "devDependencies": {

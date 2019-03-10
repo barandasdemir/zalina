@@ -13,19 +13,16 @@ const schema = yup.object().shape({
 });
 
 const model = {
-    schema,
-    create: (user) => {
-        console.log(user);
-        const hashed = this.hashPassword(user.password);
-        user.password = hashed;
+    create: async (user) => {
         try {
-            // await db.createUser(user);
-            console.log('created a new user');
+            await schema.validate(user);
+            user.password = bcrypt.hashSync(user.password, 10);
+            await db.createUser(user);
+            return user;
         } catch (error) {
             console.error(error);
         }
-    },
-    hashPassword: (password) => bcrypt.hashSync(password, bcrypt.genSaltSync())
+    }
 };
 
 module.exports = model;

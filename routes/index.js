@@ -5,11 +5,12 @@ const util = require('../lib/util');
 
 // mounts to /
 router.get('/', (req, res, next) => {
-    console.log(req.session.userid);
-    (req.session.userid) ? res.render('index', {
-        title: 'Zalina | Ana sayfa', activeSession: req.session
-    }) : res.render('index', { title: 'Zalina | Ana sayfa', activeSession: -1 })
-
+    const activeSession = (req.session.userid) ? req.session : -1;
+    console.log(activeSession);
+    res.render('index', {
+        title: 'Zalina | Ana sayfa',
+        activeSession
+    });
 });
 
 // mounts to /category/productType
@@ -18,21 +19,16 @@ router.get('/:cat/:type?', (req, res, next) => {
     const isCategory = header.links.some((category, index) => {
         if (category === req.params.cat) {
             return db.getProductTypesByCategory(header.categories[index]).then(types => {
+                const activeSession = (req.session.userid) ? req.session : -1;
                 if (!req.params.type) {
                     // product type is not specified
                     // render the category page
-                    (req.session.userid) ? res.render('category', {
+                    res.render('category', {
                         title: `Zalina - ${header.categories[index]}`,
                         category,
-                        activeSession: req.session,
-                        sidemenu: types
-                    }) : res.render('category', {
-                        title: `Zalina - ${header.categories[index]}`,
-                        category,
-                        activeSession: -1,
+                        activeSession,
                         sidemenu: types
                     });
-
                 } else {
                     const typeIndex = types
                         .map(type => util.toEn(type))
@@ -44,23 +40,14 @@ router.get('/:cat/:type?', (req, res, next) => {
                         // get that type's listing
                         db.getProductListing(header.categories[index], productType).then(listing => {
                             // then render it's listing page
-
-                            (req.session.userid) ? res.render('product-listing', {
+                            res.render('product-listing', {
                                 title: `Zalina - ${productType}`,
                                 category,
                                 sidemenu: types,
                                 productType,
-                                activeSession: req.session,
-                                listing
-                            }) : res.render('product-listing', {
-                                title: `Zalina - ${productType}`,
-                                category,
-                                sidemenu: types,
-                                activeSession: -1,
-                                productType,
+                                activeSession,
                                 listing
                             });
-
                         });
                     } else {
                         // if given type is not an actual product type

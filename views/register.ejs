@@ -1,14 +1,8 @@
 <%- include partials/header %>
 
-<% if (typeof message !== 'undefined') { %>
-<p>
-    <%= message %>
-</p>
-<% } %>
-
 <div class="row" style="margin-top:2rem">
     <h5 class="center">Üye olun</h5>
-    <form action="/auth/register/new-user" method="POST" class="col s12 m4 offset-m4">
+    <form action="/register/new-user" method="POST" class="col s12 m4 offset-m4">
         <div class="row">
             <div class="input-field col s12">
                 <input name="email" id="email" type="email" class="validate">
@@ -31,16 +25,18 @@
                 </label>
             </p>
         </div>
-        <button class="waves-effect waves-light btn black white-text col s12 m12" type="submit" name="action">Bize
-            katılın</button>
+        <button class="waves-effect waves-light btn light-green darken-4 white-text col s12 m12" type="submit" name="action">
+            Bize katılın
+        </button>
     </form>
 
     <div class="row">
         <p class="col s12 m12 center" style="margin-top: 3em; margin-bottom: 0;">Zaten bir hesabınız varsa</p>
     </div>
     <div class="row">
-        <a href="/auth/login" class="waves-effect waves-light btn grey lighten-2 black-text col s12 m4 offset-m4 z-depth-0">Giriş
-            yap</a>
+        <a href="/login" class="waves-effect waves-light btn grey lighten-2 black-text col s12 m4 offset-m4 z-depth-0">
+            Giriş yap
+        </a>
     </div>
 </div>
 
