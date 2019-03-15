@@ -47,6 +47,10 @@ exports.seed = function (knex, Promise) {
                 name: 'Jean',
                 category: 1
             },
+            {
+                name: 'Otantik Ürünler',
+                category: 1
+            },
 
             {
                 name: 'Kapüşonlu & Sweatshirt',
@@ -78,6 +82,10 @@ exports.seed = function (knex, Promise) {
             },
             {
                 name: 'Aksesuar',
+                category: 2
+            },
+            {
+                name: 'Otantik Ürünler',
                 category: 2
             },
             ]);

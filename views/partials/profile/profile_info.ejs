@@ -1,0 +1,86 @@
+<div class="container-fluid row" style="margin-top: 10px; margin-bottom: 10px;">
+    <form action="/profile/update" method="GET" class="col s12 m6 l6">
+        <div class="row">
+            <div class="input-field col s12">
+                <input disabled value="<%=email%>" id="disabled" type="text" class="validate">
+                <label for="disabled">E-Mail adresi değiştirilemez.</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6 l6">
+                <input value="<%=userInfo.clientname%>" id="first_name" type="text" name="name" class="validate">
+                <label for="first_name">Adınız</label>
+            </div>
+            <div class="input-field col s12 m6 l6">
+                <input value="<%=userInfo.clientsurname%>" id="second_name" type="text" name="surname" class="validate">
+                <label for="second_name">Soyadınız</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input value="<%=userInfo.idnumber%>" placeholder="11 haneli TC kimlik numaranız.." id="idno" name="idnumber" type="text"
+                    class="validate">
+                <label for="idno">TC Kimlik Numarası</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input value="<%=userInfo.phonenumber%>" placeholder="Telefon numaranızı giriniz.." id="telno" name="phone" type="text" class="validate">
+                <label for="telno">Telefon numarası</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12 m6 l6">
+                <select id="gender">
+                    <option value="" disabled selected>Cinsiyetinizi seçin..</option>
+                    <option value="1">Erkek</option>
+                    <option value="2">Kadın</option>
+                </select>
+                <label for="gender">Cinsiyet</label>
+            </div>
+            <div class="input-field col s12 m6 l6">
+                <select id="country">
+                    <option value="" disabled selected>Ülke seçin..</option>
+                    <option value="1">Option 1</option>
+
+                </select>
+                <label for="Country">Ülke</label>
+            </div>
+        </div>
+        <button class="waves-effect waves-light btn light-green darken-4 white-text col s12 m12" type="submit">
+            Güncelle
+        </button>
+    </form>
+    <div class="col s12 m6 l6" style="padding: 20px;">
+        <div class="card white black-text"">
+            <div class=" card-content black-text">
+            <span class="card-title">Hesabı kaldır</span>
+            <p>Zalina hesabını silmek mi istiyorsunuz? O halde tıklayın!</p>
+        </div>
+        <div class="card-action">
+            <a class="black-text" href="#">Hesabı kaldır</a>
+        </div>
+    </div>
+    <div class="card white black-text">
+        <div class="card-content black-text">
+            <span class="card-title">Parola değiştir</span>
+            <p>Parolanızı mı değiştirmek istiyorsunuz? Tıklayın!</p>
+        </div>
+        <div class="card-action">
+            <a class="black-text" href="#">Parolanı güncelle</a>
+        </div>
+    </div>
+    <div class="card white black-text">
+        <div class="card-content black-text">
+            <span class="card-title">Oturumu kapat</span>
+            <p>Aşağıda bulunan butona tıklayarak çıkış yapabilirsiniz! Güle güle!</p>
+        </div>
+        <div class="card-action">
+            <a class="black-text" href="#">Oturumu kapat</a>
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
