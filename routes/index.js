@@ -6,7 +6,6 @@ const util = require('../lib/util');
 // mounts to /
 router.get('/', (req, res, next) => {
     const activeSession = (req.session.userid) ? req.session : -1;
-    console.log(activeSession);
     res.render('index', {
         title: 'Zalina | Ana sayfa',
         activeSession

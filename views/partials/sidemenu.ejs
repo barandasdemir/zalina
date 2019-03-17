@@ -1,14 +1,16 @@
 <% const trMap = {'çÇ':'c','ğĞ':'g','şŞ':'s','üÜ':'u','ıİ':'i','öÖ':'o'}; %>
-<% sidemenu.forEach((item) => { %>
-<li class="collection-item">
-    <%
+<ul class="collection col s12 m3">
+    <% sidemenu.forEach((item) => { %>
+    <li class="collection-item">
+        <%
     let itemFixed = item.replace(/\s+/g, '-').replace(/\&+/g, '-').replace(/[-]+/gi, "-").trim().toLowerCase();
     for (const key in trMap) {
         itemFixed = itemFixed.replace(new RegExp('['+key+']','g'), trMap[key]);
     }
     %>
-    <a href="/<% if (category) { %><%= category %><% } %>/<%- itemFixed %>">
-        <%- item %>
-    </a>
-</li>
-<% }); %>
+        <a href="/<% if (category) { %><%= category %><% } %>/<%- itemFixed %>">
+            <%= item %>
+        </a>
+    </li>
+    <% }); %>
+</ul>

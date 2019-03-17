@@ -1,10 +1,10 @@
 <%- include partials/header %>
 
 <div class="row">
-    <img src="https://via.placeholder.com/600x900.jpg?text=insert+image+here" class="col s12 m3 offset-m1" />
-    <img src="https://via.placeholder.com/600x900.jpg?text=insert+image+here" class="col s12 m3" />
+    <img src="https://images.unsplash.com/photo-1546650855-1d0a29c1a31d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80" class="col s12 m3 offset-m1" />
+    <img src="https://images.unsplash.com/photo-1546650855-1d0a29c1a31d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80" class="col s12 m3 " />
     <div id="product" class="col s6 m3 section scrollspy">
-        <h4><%= product.name %></h4>
+        <h4 class="productName"><%= product.name %></h4>
         <h5><%= product.price.toFixed(2) %> ₺</h5>
         <br><br>
         <div class="input-field black-text">
@@ -27,7 +27,7 @@
             <label>Beden</label>
         </div>
         <br>
-        <a class="waves-effect waves-light btn light-green darken-4 white-text col s12 m12 valign-wrapper">
+        <a class="waves-effect waves-light btn button-buy light-green darken-4 white-text col s12 m12 valign-wrapper">
             <i class="material-icons left">shopping_cart</i>
             <b class="center">Ekle</b>
         </a>
@@ -47,3 +47,4 @@
 </div>
 
 <%- include partials/footer %>
+<script src="/javascripts/cart.js"></script>
