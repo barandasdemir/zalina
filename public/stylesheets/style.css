@@ -48,10 +48,14 @@ li {
     color: black;
 }
 
-.select-wrapper input.select-dropdown  {
+.select-wrapper input.select-dropdown {
     border-color: darkgrey;
 }
 
 .select-wrapper input.select-dropdown:focus {
     border-color: black;
+}
+
+form h5 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

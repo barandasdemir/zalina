@@ -7,8 +7,7 @@
             </ul> -->
             <% header.categories.forEach((category, index) => { %>
             <li class="col">
-                <a style="font-size: 12px; text-decoration: underline;" class="black-text"
-                    href="/<%= header.links[index] %>">
+                <a style="font-size: 12px" class="black-text" href="/<%= header.links[index] %>">
                     <%= category %>
                 </a>
             </li>
@@ -19,8 +18,7 @@
             <form>
                 <div class="input-field">
                     <input id="search" type="search" style="height:auto" placeholder="Ürün ara" required>
-                    <label class="label-icon black-text" for="search"><i
-                            class="material-icons black-text">search</i></label>
+                    <label class="label-icon black-text" for="search"><i class="material-icons black-text">search</i></label>
                 </div>
             </form>
         </div>

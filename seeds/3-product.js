@@ -18,6 +18,13 @@ exports.seed = function (knex, Promise) {
                 productType: 12
             },
             {
+                name: 'Tisort',
+                description: 'description',
+                price: '29.9',
+                stock: 400,
+                productType: 16
+            },
+            {
                 name: 'Kapüşonlu Üst',
                 description: 'something about the product',
                 price: '99',

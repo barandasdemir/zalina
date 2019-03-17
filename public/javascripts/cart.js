@@ -1,34 +1,34 @@
 $(document).ready(function () {
     let cartQty = Number.parseInt($('#cartQty')[0].innerHTML);
 
-    const sendAjax = (action, id) => {
-        return $.ajax({
-            method: 'POST',
-            url: `/cart/${action}`,
-            data: {
-                id,
-            }
-        });
-    }
-
-    $('.button-rm').click(() => {
-        console.log($(this));
-        // const item = $(this).parent().parent().parent();
-        // const id = item[0].attributes.id.value;
-        // sendAjax('remove', id)
-        //     .done(() => {
-        //         $('#cartQty')[0].innerText = --cartQty;
-        //         item.parent().remove();
-        //         if ($('.button-rm').length < 1) {
-        //             $('.cart').remove();
-        //             $('.container.cartwrapper').append('<h6><b>Alışveriş sepetiniz boş!</b></h6><p style="padding-bottom: 2em;">Alışveriş sepetinize ürün kaydetmek veya daha önce kaydedilmiş ürünlere erişmek için oturum açın.</p>');
-        //         }
-        //     });
+    $('.button-rm').click((event) => {
+        const item = event.target.parentElement.parentElement.parentElement;
+        $.ajax({
+                method: 'POST',
+                url: `/cart/remove`,
+                data: {
+                    id: item.id,
+                }
+            })
+            .done((cart) => {
+                $('#cartQty')[0].innerText = --cartQty;
+                item.remove();
+                if ($('.button-rm').length < 1) {
+                    $('.cart').remove();
+                    $('.container.cartwrapper').append('<h6><b>Alışveriş sepetiniz boş!</b></h6><p style="padding-bottom: 2em;">Alışveriş sepetinize ürün kaydetmek veya daha önce kaydedilmiş ürünlere erişmek için oturum açın.</p>');
+                }
+            });
     });
 
     $(".button-buy").click(() => {
         const loc = window.location.href.split('/');
-        sendAjax('add', loc[loc.length - 1])
+        $.ajax({
+                method: 'POST',
+                url: `/cart/add`,
+                data: {
+                    id: loc[loc.length - 1],
+                }
+            })
             .done(() => {
                 $('#cartQty')[0].innerText = ++cartQty;
                 M.toast({
@@ -38,27 +38,40 @@ $(document).ready(function () {
             });
     });
 
-    $('#qtyMinus').click(() => {
-        const item = $(this).parent().parent().parent().parent();
-        const id = item[0].attributes.id.value;
-        let itemQty = Number.parseInt($(this).parent().children()[1].innerText);
-        if (--itemQty > 0) {
-            sendAjax('remove', id)
-                .done(() => {
+    $('.qtyMinus').click((event) => {
+        const item = event.target.parentElement.parentElement.parentElement.parentElement;
+        // const productName = event.target.parentElement.parentElement.childNodes[3].innerText.split('\n')[0];
+        const itemQty = event.target.parentElement.children[1];
+        if (Number.parseInt(itemQty.innerText) - 1 > 0) {
+            $.ajax({
+                    method: 'POST',
+                    url: `/cart/remove`,
+                    data: {
+                        id: item.id,
+                    }
+                })
+                .done((product) => {
                     $('#cartQty')[0].innerText = --cartQty;
-                    $('#itemQty')[0].innerText = itemQty;
+                    itemQty.innerText = Number.parseInt(itemQty.innerText) - 1;
+                    itemQty.parentElement.parentElement.children[6].innerText = `Toplam: ${product.totalPrice.toFixed(2)} ₺`;
                 });
         }
     });
 
-    $('#qtyPlus').click(() => {
-        const item = $(this).parent().parent().parent();
-        const id = item[0].attributes.id.value;
-        let itemQty = Number.parseInt($('.itemQty')[0].innerText);
-        sendAjax('add', id)
-            .done(() => {
+    $('.qtyPlus').click((event) => {
+        const item = event.target.parentElement.parentElement.parentElement.parentElement;
+        let itemQty = event.target.parentElement.children[1];
+        $.ajax({
+                method: 'POST',
+                url: `/cart/add`,
+                data: {
+                    id: item.id,
+                }
+            })
+            .done((product) => {
                 $('#cartQty')[0].innerText = ++cartQty;
-                $('#itemQty')[0].innerText = ++itemQty;
+                itemQty.innerText = Number.parseInt(itemQty.innerText) + 1;
+                itemQty.parentElement.parentElement.children[6].innerText = `Toplam: ${product.totalPrice.toFixed(2)} ₺`;
             });
     });
 });
