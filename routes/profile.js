@@ -9,7 +9,6 @@ router.get('/', (req, res, next) => {
         db.getUserInfoById(req.session.userid).then((result) => {
             res.render('profile', {
                 title: 'Zalina | Genel',
-                activeSession: 1,
                 cPage: 0,
                 email: req.session.email,
                 userInfo: result[0]
@@ -32,7 +31,6 @@ router.get('/update', (req, res, next) => {
         db.getUserInfoById(req.session.userid).then((result) => {
             res.render('profile', {
                 title: 'Zalina | Kişisel Bilgiler',
-                activeSession: 1,
                 cPage: 1,
                 email: req.session.email,
                 userInfo: result[0]
@@ -52,7 +50,6 @@ router.get('/:param', (req, res, next) => {
 
                         res.render('profile', {
                             title: 'Zalina | Genel',
-                            activeSession: 1,
                             cPage: 0,
                             email: req.session.email,
                             userInfo: result[0]
@@ -67,7 +64,6 @@ router.get('/:param', (req, res, next) => {
 
                         res.render('profile', {
                             title: 'Zalina | Kişisel Bilgiler',
-                            activeSession: 1,
                             cPage: 1,
                             email: req.session.email,
                             userInfo: result[0]
@@ -80,7 +76,6 @@ router.get('/:param', (req, res, next) => {
                 {
                     res.render('profile', {
                         title: 'Zalina | Sipariş',
-                        activeSession: 1,
                         cPage: 2
                     });
                     break;
@@ -89,7 +84,6 @@ router.get('/:param', (req, res, next) => {
                 {
                     res.render('profile', {
                         title: 'Zalina | Adres Bilgileri',
-                        activeSession: 1,
                         cPage: 3
                     });
                     break;
@@ -98,7 +92,6 @@ router.get('/:param', (req, res, next) => {
                 {
                     res.render('profile', {
                         title: 'Zalina | Ayarlar',
-                        activeSession: 1,
                         cPage: 4
                     });
                     break;
@@ -106,7 +99,6 @@ router.get('/:param', (req, res, next) => {
             default:
                 {
                     next();
-
                 }
         }
     } else res.redirect('/login');

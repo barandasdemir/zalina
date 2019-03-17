@@ -15,7 +15,7 @@ exports.seed = function (knex, Promise) {
                 description: 'description',
                 price: '99.9',
                 stock: 490,
-                productType: 12
+                productType: 13
             },
             {
                 name: 'Tisort',
@@ -29,14 +29,14 @@ exports.seed = function (knex, Promise) {
                 description: 'something about the product',
                 price: '99',
                 stock: 13,
-                productType: 12
+                productType: 13
             },
             {
                 name: 'Baskılı Sweatshirt',
                 description: 'desc',
                 price: '130',
                 stock: 30,
-                productType: 12
+                productType: 13
             },
             ]);
         });

@@ -11,7 +11,6 @@ module.exports = new Promise(async (resolve, reject) => {
         categories,
         links
     }
-    locals.cartQty = 0;
 
     resolve(locals);
 })

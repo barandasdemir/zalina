@@ -4,11 +4,8 @@ const db = require('../lib/db/queries');
 
 // mounts to /cart
 router.get('/', (req, res, next) => {
-    const activeSession = (req.session.userid) ? req.session : -1;
     res.render('cart', {
         title: 'Zalina | Alışveriş Sepeti',
-        activeSession,
-        cart: req.session.cart,
         total: 0,
     });
 });
@@ -21,18 +18,19 @@ router.post('/add', async (req, res, next) => {
     }
     if (!req.session.cart) {
         req.session.cart = [];
+        req.session.cartQty = 0;
     }
     let idx = req.session.cart.findIndex(item => item.id === product[0].id);
     if (idx === -1) {
         product[0].qty = 1;
         product[0].totalPrice = product[0].price;
-        req.session.cart.push(product[0]);
+        idx = req.session.cart.push(product[0]) - 1;
     } else {
         req.session.cart[idx].qty += 1;
         req.session.cart[idx].totalPrice = req.session.cart[idx].qty * req.session.cart[idx].price;
     }
-    req.app.locals.cartQty += 1;
-    res.json(req.session.cart.find(item => item.id === Number.parseInt(req.body.id)));
+    req.session.cartQty += 1;
+    res.json(req.session.cart[idx]);
 });
 
 // mounts to /cart/remove
@@ -41,15 +39,17 @@ router.post('/remove', (req, res, next) => {
         const idx = req.session.cart.findIndex(item => item.id === Number.parseInt(req.body.id));
         let itemQty = req.session.cart[idx].qty;
         if (idx >= 0) {
-            if (--itemQty > 0) {
-                req.session.cart[idx].qty = itemQty;
-                req.session.cart[idx].totalPrice = req.session.cart[idx].qty * req.session.cart[idx].price;
-            } else {
+            if (req.body.ref === 'rm') {
+                req.session.cartQty -= req.session.cart[idx].qty;
                 req.session.cart.splice(idx, 1);
+                res.end();
+            } else if (--itemQty > 0) {
+                req.session.cart[idx].totalPrice = itemQty * req.session.cart[idx].price;
+                req.session.cart[idx].qty = itemQty;
+                req.session.cartQty -= 1;
+                res.json(req.session.cart[idx]);
             }
-            req.app.locals.cartQty -= 1;
         }
-        res.json(req.session.cart.find(item => item.id === Number.parseInt(req.body.id)));
     }
 });
 

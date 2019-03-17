@@ -8,10 +8,11 @@ $(document).ready(function () {
                 url: `/cart/remove`,
                 data: {
                     id: item.id,
+                    ref: 'rm',
                 }
             })
-            .done((cart) => {
-                $('#cartQty')[0].innerText = --cartQty;
+            .done(() => {
+                $('#cartQty')[0].innerText -= Number.parseInt(event.target.parentElement.children[7].children[1].innerText);
                 item.remove();
                 if ($('.button-rm').length < 1) {
                     $('.cart').remove();

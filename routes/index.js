@@ -5,10 +5,8 @@ const util = require('../lib/util');
 
 // mounts to /
 router.get('/', (req, res, next) => {
-    const activeSession = (req.session.userid) ? req.session : -1;
     res.render('index', {
         title: 'Zalina | Ana sayfa',
-        activeSession
     });
 });
 
@@ -18,14 +16,12 @@ router.get('/:cat/:type?', (req, res, next) => {
     const isCategory = header.links.some((category, index) => {
         if (category === req.params.cat) {
             return db.getProductTypesByCategory(header.categories[index]).then(types => {
-                const activeSession = (req.session.userid) ? req.session : -1;
                 if (!req.params.type) {
                     // product type is not specified
                     // render the category page
                     res.render('category', {
                         title: `Zalina - ${header.categories[index]}`,
                         category,
-                        activeSession,
                         sidemenu: types
                     });
                 } else {
@@ -44,7 +40,6 @@ router.get('/:cat/:type?', (req, res, next) => {
                                 category,
                                 sidemenu: types,
                                 productType,
-                                activeSession,
                                 listing
                             });
                         });

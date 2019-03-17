@@ -6,10 +6,8 @@ const bcrypt = require('bcrypt');
 
 // mounts to /login
 router.get('/', (req, res, next) => {
-    const activeSession = (req.session.userid) ? req.session : -1;
     res.render('login', {
         title: 'Zalina | Oturum aç',
-        activeSession,
         wrongPass: 0
     });
 });
