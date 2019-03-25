@@ -1,0 +1,86 @@
+<ul class="collection col s12 m7 l7 z-depth-1"
+    style="border-style: solid; border-color: green; border-width: 1px; border-radius: 0.2px; padding: 20px; margin-top: 9px;">
+    <li class="collection-item avatar">
+        <i class="material-icons circle green">location_city</i>
+        <span class="center-align title">Adres Defteriniz</span>
+
+        <ul style="margin-top: 20px;" class="collapsible">
+            <li>
+                <div class="collapsible-header">
+                    <i class="material-icons">home</i>
+                    First
+                </div>
+                <div class="collapsible-body">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="material-icons">business</i>
+                    Second
+
+                </div>
+                <div class="collapsible-body">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="material-icons">business</i>
+                    Second
+
+                </div>
+                <div class="collapsible-body">
+                    <p>Lorem ipsum dolor sit amet.</p>
+                </div>
+            </li>
+        </ul>
+        <a href="#!" class="secondary-content"><i class="material-icons">edit</i></a>
+
+    </li>
+</ul>
+<form action="/profile/update" method="GET" class="col s12 m7 l7 z-depth-1"
+    style="border-style: solid; border-color: green; border-width:0.2px; border-radius: 1px; padding: 20px; margin-top: 9px;">
+    <p>Adres Defteriniz</p>
+    <div class="row">
+        <div class="input-field col s12">
+            <input value="" id="title" type="text" class="validate">
+            <label for="title"> Adres başlığı giriniz..</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m6 l6">
+            <select id="gender">
+                <option value="" disabled selected>Cinsiyetinizi seçin..</option>
+                <option value="1">Erkek</option>
+                <option value="2">Kadın</option>
+            </select>
+            <label for="gender">Ülke</label>
+        </div>
+        <div class="input-field col s12 m6 l6">
+            <select id="country">
+                <option value="" disabled selected>Ülke seçin..</option>
+                <option value="1">Option 1</option>
+
+            </select>
+            <label for="Country">Şehir</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12 m6 l6">
+            <select id="gender">
+                <option value="" disabled selected>Cinsiyetinizi seçin..</option>
+                <option value="1">Erkek</option>
+                <option value="2">Kadın</option>
+            </select>
+            <label for="gender">İlçe</label>
+        </div>
+        <div class="input-field col s12 m6 l6">
+            <input value="" id="postalcode" type="text" class="validate">
+            <label for="postalcode">Posta Kodu</label>
+        </div>
+    </div>
+    <button class="waves-effect waves-light btn light-green darken-4 white-text col s12 m12" type="submit">
+        Adres Ekle
+    </button>
+</form>

@@ -26,7 +26,7 @@ router.post('/add', async (req, res, next) => {
         product[0].totalPrice = product[0].price;
         idx = req.session.cart.push(product[0]) - 1;
     } else {
-        req.session.cart[idx].qty += 1;
+        req.session.cart[idx].qty += 1; nodemo
         req.session.cart[idx].totalPrice = req.session.cart[idx].qty * req.session.cart[idx].price;
     }
     req.session.cartQty += 1;

@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({ secret: 'zal', resave: false, saveUninitialized: false }));
 
 app.use((req, res, next) => {
@@ -49,6 +49,8 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
+    res.locals.detail = req.message;
+    console.log(res.locals.detail);
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
     // render the error page
