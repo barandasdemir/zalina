@@ -4,6 +4,7 @@ const db = require('../lib/db/queries');
 const util = require('../lib/util');
 const bcrypt = require('bcrypt');
 const yup = require('yup');
+const url = require('url');
 
 
 router.get('/', (req, res, next) => {
@@ -77,6 +78,59 @@ router.get('/update', (req, res, next) => {
     } else res.redirect('/login');
 
 });
+router.post("/add_address", (req, res, next) => {
+    if (req.session.userid) {
+        const schema = yup.object().shape({
+            title: yup.string().required(),
+            country: yup.string().required(),
+            city: yup.string().required(),
+            location: yup.string().required(),
+            postalcode: yup.string().required(),
+            content: yup.string().required()
+
+        });
+        console.log(req.body);
+        try {
+            schema.isValid(req.body).then(valid => {
+                if (valid === true) {
+                    db.addAddress(req.session.userid, req.body);
+                    db.getUserInfoById(req.session.userid).then((result) => {
+                        db.getAddress(req.session.userid).then(addressResult => {
+                            res.redirect(url.format({
+                                pathname: "/profile/addresses",
+                                query: {
+                                    "validation": true
+                                }
+                            }));
+                        });
+                    });
+                }
+                else {
+                    db.getUserInfoById(req.session.userid).then((result) => {
+
+                        db.getAddress(req.session.userid).then(addressResult => {
+                            res.redirect(url.format({
+                                pathname: "/profile/addresses",
+                                query: {
+                                    "validation": false
+                                }
+                            }));
+                        });
+
+
+                    });
+                }
+
+            });
+        }
+        catch (error) {
+            console.log(error);
+        }
+
+
+    }
+    else res.redirect('/login');
+});
 
 router.get('/:param', (req, res, next) => {
     if (req.session.userid) {
@@ -122,12 +176,15 @@ router.get('/:param', (req, res, next) => {
                 {
                     db.getUserInfoById(req.session.userid).then((result) => {
 
-                        res.render('profile', {
-                            title: 'Zalina | Adres Bilgileri',
-                            cPage: 3,
-                            validation: true,
-                            email: req.session.email,
-                            userInfo: result[0]
+                        db.getAddress(req.session.userid).then(addressResult => {
+                            res.render('profile', {
+                                title: 'Zalina | Adres Bilgileri',
+                                cPage: 3,
+                                validation: req.query.validation,
+                                addresses: addressResult,
+                                email: req.session.email,
+                                userInfo: result[0]
+                            })
                         });
                     });
                     break;

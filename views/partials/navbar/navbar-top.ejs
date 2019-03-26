@@ -14,18 +14,26 @@
         <p class="black-text">Alisveris sepetiniz boş</p>
     </ul> -->
     <ul class="right ">
+        <%if (session.userid){%>
+        <li>
+            <a href="/logout" style="font-size: 12px;" class="black-text valign-wrapper">
+                <i class="material-icons left">power_settings_new</i>Çıkış Yap
+            </a>
+        </li><%}%>
         <li>
 
             <% if (!session.userid) { %>
-            <a href="/login" style="font-size: 12px;" class="black-text valign-wrapper">
-                <i class="material-icons left">person</i>Oturum Aç
-            </a>
-            <% } else { %>
-            <a href="/profile" style="font-size: 12px;" class="black-text valign-wrapper">
-                <i class="material-icons left">person</i>Profilim
-            </a>
-            <% }%>
+        <a href="/login" style="font-size: 12px;" class="black-text valign-wrapper">
+            <i class="material-icons left">person</i>Oturum Aç
+        </a>
+        <% } else { %>
+        <a href="/profile" style="font-size: 12px;" class="black-text valign-wrapper">
+            <i class="material-icons left">person</i>Profilim
+        </a>
+
+        <% }%>
         </li>
+
         <li>
             <a href="#" style="font-size: 12px;" class="black-text valign-wrapper">
                 <i class="material-icons left">favorite</i> Favorilerim
