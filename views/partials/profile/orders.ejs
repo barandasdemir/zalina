@@ -1,29 +1,29 @@
-<div class="row">
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Item Name</th>
-                <th>Item Price</th>
-            </tr>
-        </thead>
+<% if (orders && orders.length > 0) { %>
+<table class="col s6 offset-s1">
+    <thead>
+        <tr>
+            <th>Sipariş Numarası</th>
+            <th>Sipariş Tarihi</th>
+            <th>Ürün Adedi</th>
+            <th></th>
+        </tr>
+    </thead>
 
-        <tbody>
-            <tr>
-                <td>Alvin</td>
-                <td>Eclair</td>
-                <td>$0.87</td>
-            </tr>
-            <tr>
-                <td>Alan</td>
-                <td>Jellybean</td>
-                <td>$3.76</td>
-            </tr>
-            <tr>
-                <td>Jonathan</td>
-                <td>Lollipop</td>
-                <td>$7.00</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <tbody>
+        <% orders.forEach(order => { %>
+        <tr>
+            <td><%= order.id %></td>
+            <td><%= order.date %></td>
+            <td><%= order.qty %></td>
+            <td>
+                <a href="/profile/taken/<%= order.id %>">
+                    <i class="material-icons black-text">send</i>
+                </a>
+            </td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+<% } else { %>
+    <h5 class="col s6 offset-s1 center">Hiç siparişiniz yok!</h5>
+<% } %>

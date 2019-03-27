@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt');
 const yup = require('yup');
 const url = require('url');
 
-
 router.get('/', (req, res, next) => {
     if (req.session.userid)
         db.getUserInfoById(req.session.userid).then((result) => {
@@ -16,7 +15,6 @@ router.get('/', (req, res, next) => {
                 email: req.session.email,
                 userInfo: result[0]
             });
-
         });
     else res.redirect('/login');
 });
@@ -52,8 +50,7 @@ router.get('/update', (req, res, next) => {
 
 
                     });
-                }
-                else {
+                } else {
                     db.getUserInfoById(req.session.userid).then((result) => {
                         res.render('profile', {
                             title: 'Zalina | Kişisel Bilgiler',
@@ -68,8 +65,7 @@ router.get('/update', (req, res, next) => {
 
 
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
 
@@ -104,8 +100,7 @@ router.post("/add_address", (req, res, next) => {
                             }));
                         });
                     });
-                }
-                else {
+                } else {
                     db.getUserInfoById(req.session.userid).then((result) => {
 
                         db.getAddress(req.session.userid).then(addressResult => {
@@ -122,14 +117,12 @@ router.post("/add_address", (req, res, next) => {
                 }
 
             });
-        }
-        catch (error) {
+        } catch (error) {
             console.log(error);
         }
 
 
-    }
-    else res.redirect('/login');
+    } else res.redirect('/login');
 });
 
 router.get('/:param', async (req, res, next) => {
@@ -166,12 +159,14 @@ router.get('/:param', async (req, res, next) => {
                 }
             case 'taken':
                 {
+                    const result = await db.getUserInfoById(req.session.userid);
                     const orders = await db.getOrdersOfUser(req.session.userid);
-                    console.log(orders[0]);
 
                     res.render('profile', {
                         title: 'Zalina | Sipariş',
-                        cPage: 2
+                        cPage: 2,
+                        userInfo: result[0],
+                        orders: orders[0]
                     });
                     break;
                 }
@@ -199,6 +194,18 @@ router.get('/:param', async (req, res, next) => {
                 }
         }
     } else res.redirect('/login');
+});
+
+router.get('/taken/:id', async (req, res, next) => {
+    if (!req.session.userid) res.redirect('/');
+    const order = await db.getOrder(req.params.id);
+    const result = await db.getUserInfoById(req.session.userid);
+    res.render('profile', {
+        title: 'Zalina | Sipariş',
+        cPage: 4,
+        userInfo: result[0],
+        order
+    });
 });
 
 module.exports = router;

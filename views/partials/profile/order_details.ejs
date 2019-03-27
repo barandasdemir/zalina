@@ -1,0 +1,27 @@
+<table class="col s6 offset-s1">
+    <thead>
+        <tr>
+            <th>Ürün adı</th>
+            <th>Ürün Kodu</th>
+            <th>Adet</th>
+            <th>Fiyat</th>
+            <th>Toplam Fiyat</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% order.forEach(product => { %>
+        <tr>
+            <td>
+                <%= product.name %>
+                <br>
+                <%= product.color %> - <%= product.size %>
+            </td>
+            <td><%= product.id %></td>
+            <td><%= product.qty %></td>
+            <td><%= product.price %> ₺</td>
+            <td><%= (product.qty * product.price) %> ₺</td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>

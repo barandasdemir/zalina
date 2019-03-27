@@ -36,7 +36,7 @@ router.post('/add', async (req, res, next) => {
         product[0].color = req.body.color;
         idx = req.session.cart.push(product[0]) - 1;
     } else {
-        req.session.cart[idx].qty += 1; nodemo
+        req.session.cart[idx].qty += 1;
         req.session.cart[idx].totalPrice = req.session.cart[idx].qty * req.session.cart[idx].price;
     }
     req.session.cartQty += 1;
@@ -73,9 +73,14 @@ router.post('/remove', (req, res, next) => {
 });
 
 router.get('/checkout', (req, res, next) => {
-    db.createOrder(req.session.userid, req.session.cart).then(() => {
-        console.log('order completed');
-    })
+    if (req.session.userid) {
+        db.createOrder(req.session.userid, req.session.cart).then(() => {
+            // console.log('order completed');
+            res.redirect('/profile/taken');
+        })
+    } else {
+        res.send('there\'s no user logged in, will handle this later. go back');
+    }
 });
 
 module.exports = router;
