@@ -41,7 +41,7 @@ router.get('/update', (req, res, next) => {
 
 });
 
-router.get('/:param', (req, res, next) => {
+router.get('/:param', async (req, res, next) => {
     if (req.session.userid) {
         switch (req.params.param) {
             case 'general':
@@ -74,6 +74,9 @@ router.get('/:param', (req, res, next) => {
                 }
             case 'taken':
                 {
+                    const orders = await db.getOrdersOfUser(req.session.userid);
+                    console.log(orders[0]);
+
                     res.render('profile', {
                         title: 'Zalina | Sipariş',
                         cPage: 2

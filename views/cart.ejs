@@ -28,8 +28,8 @@
                         <p>Ürün kodu:
                             <%= item.id %>
                         </p>
-                        <p>Beden: WIP</p>
-                        <p>Renk: WIP</p>
+                        <p>Beden: <%= item.size %></p>
+                        <p>Renk: <%= item.color %></p>
                         <p class="productTotal">
                             Toplam:
                             <%= item.totalPrice.toFixed(2) %> ₺
@@ -65,6 +65,8 @@
                 WIP<br>
                 refresh to update for now
             </li>
+            <br>
+            <a href="/cart/checkout" class="waves-effect waves-light btn black col s12" style="margin-bottom:1em">Siparişi tamamla</a>
         </ul>
     </div>
     <% } else { %>

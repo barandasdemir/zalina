@@ -16,14 +16,24 @@ router.post('/add', async (req, res, next) => {
     if (product.length === 0) {
         next();
     }
+    // init cart if it does not exist
     if (!req.session.cart) {
         req.session.cart = [];
         req.session.cartQty = 0;
     }
-    let idx = req.session.cart.findIndex(item => item.id === product[0].id);
+    // find item in cart based on id, color and size
+    let idx = req.session.cart.findIndex(item => {
+        return (
+            item.id === product[0].id &&
+            item.color === req.body.color &&
+            item.size === req.body.size
+        );
+    });
     if (idx === -1) {
         product[0].qty = 1;
         product[0].totalPrice = product[0].price;
+        product[0].size = req.body.size;
+        product[0].color = req.body.color;
         idx = req.session.cart.push(product[0]) - 1;
     } else {
         req.session.cart[idx].qty += 1;
@@ -36,7 +46,16 @@ router.post('/add', async (req, res, next) => {
 // mounts to /cart/remove
 router.post('/remove', (req, res, next) => {
     if (req.session.cart) {
-        const idx = req.session.cart.findIndex(item => item.id === Number.parseInt(req.body.id));
+        console.log(req.session.cart);
+        console.log(req.body);
+        const idx = req.session.cart.findIndex(item => {
+            return (
+                item.id === Number.parseInt(req.body.id) &&
+                item.color === req.body.color &&
+                item.size === req.body.size
+            );
+        });
+        console.log(idx);
         let itemQty = req.session.cart[idx].qty;
         if (idx >= 0) {
             if (req.body.ref === 'rm') {
@@ -51,6 +70,12 @@ router.post('/remove', (req, res, next) => {
             }
         }
     }
+});
+
+router.get('/checkout', (req, res, next) => {
+    db.createOrder(req.session.userid, req.session.cart).then(() => {
+        console.log('order completed');
+    })
 });
 
 module.exports = router;
