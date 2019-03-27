@@ -1,23 +1,62 @@
 <%- include partials/header %>
 
-<div class="container">
-    <div class="row">
-        <ul class="green tabs tabs-fixed-width tab-demo z-depth-2">
-            <li class="tab hoverable"><a class="white-text" href="/profile/general">Genel Görünüm</a></li>
-            <li class="tab hoverable"><a class="white-text" href="/profile/info">Kişisel Bilgiler</a></li>
-            <li class="tab hoverable"><a class="white-text" href="/profile/addresses">Adreslerim</a></li>
-            <li class="tab hoverable"><a class="white-text" href="/profile/taken">Siparişlerim</a></li>
-            <li class="tab hoverable"><a class="white-text" href="/profile/settings">Ayarlar</a></li>
-        </ul>
+<div class="row">
+    <div class="col s12 m3 l3 offset-l1">
+        <div class=" collection white black-text">
+            <a class="collection-item black-text" href="/profile/general"> Genel Bilgiler<span class="badge"><i
+                        class="tiny material-icons">apps</i></span> </a>
+            <a class="collection-item black-text" href="/profile/info"><span class="badge"><i
+                        class="tiny material-icons">account_circle</i></span> Kişisel Bilgileriniz</a>
+            <a class="collection-item black-text" href="/profile/general">Siparişleriniz<span class="badge"><i
+                        class="tiny material-icons">add_shopping_cart</i></span> </a>
+            <a class="collection-item black-text" href="/profile/addresses">Adresleriniz<span class="badge"><i
+                        class="tiny material-icons">edit_location</i></span> </a>
+            <%if(userInfo.isAdmin === 1){%>
+            <a class="collection-item black-text" href="/profile/general">Yönetici Paneli<span class="badge"><i
+                        class="tiny material-icons">settings</i></span> </a>
+            <%}%>
+
+        </div>
+
+        <div class="card">
+            <div class="card-image">
+                <img
+                    src="https://images.unsplash.com/photo-1525119466982-286fa4d7cf5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80">
+            </div>
+            <div class="card-content">
+                <p>Sizi görmek ne güzel! Bu sizin kişisel panonunuz, vermiş olduğunuz siparişleri, adres
+                    kayıtlarınızı
+                    düzenleyebilir, hemen aşağıdan alışveriş yapmaya başlayabilirsiniz!</p>
+            </div>
+            <div class="card-action green">
+                <a class="white-text" href="#">Hemen sepetine bir şeyler ekle!</a>
+            </div>
+        </div>
+
     </div>
     <% if(cPage === 0) { %>
+<<<<<<< HEAD
     <%- include partials/profile/info %>
     <%}else if(cPage === 1){%>
     <%- include partials/profile/profile_info %>
     <%}else if(cPage === 2){%>
     <%- include partials/profile/orders %>
     <%}%>
+=======
+            <%- include partials/profile/info %>
+            <%}else if(cPage === 1){%>
+            <%- include partials/profile/profile_info %>
+            <%}else if(cPage === 2){%>
+            <%- include partials/profile/profile_info%>
+            <%}else if(cPage === 3){%>
+            <%- include partials/profile/addresses%>
+            <%}%>
+>>>>>>> 9ff9c48c64c236e717f6d0a8eaf7fa17aad76b3f
 
+    </div>
+    
 </div>
+
+
 
 <%- include partials/footer %>
