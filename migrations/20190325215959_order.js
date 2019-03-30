@@ -2,7 +2,7 @@ exports.up = function (knex, Promise) {
     return knex.schema.createTable('orders', table => {
         table.increments();
         table.integer('user').unsigned().notNullable().references('users.id');
-        table.date('date').defaultTo(knex.fn.now());
+        table.timestamp('date').defaultTo(knex.fn.now());
     });
 };
 

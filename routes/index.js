@@ -59,8 +59,23 @@ router.get('/:cat/:type?', (req, res, next) => {
         next();
     }
 });
-
-
+router.get('/adminpanel', async (req, res, next) => {
+    if (!req.session.userid) {
+        res.redirect('/login');
+    }
+    const user = await db.getUserById(req.session.userid);
+    if (user.isAdmin) {
+        const products = [];
+        for (let i = 0; i < req.app.locals.header.categories.length; i++) {
+            const result = await db.getProductTypesByCategory(req.app.locals.header.categories[i]);
+            products.push(result);
+        }
+        console.log(products);
+        res.render('panel', {
+            title: "Zalina | Yönetim Paneli", headers: req.app.locals.header.categories, productInfo: products
+        });
+    }
+})
 router.get('/logout', (req, res, next) => {
     req.session.destroy();
     res.redirect('/');

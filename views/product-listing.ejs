@@ -22,14 +22,15 @@
                     <a href="/product/<%= item.id %>">
                         <div class="card-image">
                             <img src="https://images.unsplash.com/photo-1546650855-1d0a29c1a31d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80">
-                            <span class="card-title white-text">
-                                <%= item.price.toFixed(2) %> ₺
-                            </span>
+
                         </div>
                         <div class="card-content center black-text">
-                            <p>
-                                <%= item.name %>
-                            </p>
+                        <span class="card-title black-text">
+                            <%= item.name %>
+                        </span>
+                        <p>
+                            <%= item.price.toFixed(2) %> ₺
+                        </p>
                         </div>
                     </a>
                 </div>
@@ -38,7 +39,6 @@
         </div>
         <% } %>
         <% }); %>
-
     </div>
 </div>
 

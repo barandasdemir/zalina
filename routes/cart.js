@@ -55,7 +55,6 @@ router.post('/remove', (req, res, next) => {
                 item.size === req.body.size
             );
         });
-        console.log(idx);
         let itemQty = req.session.cart[idx].qty;
         if (idx >= 0) {
             if (req.body.ref === 'rm') {
