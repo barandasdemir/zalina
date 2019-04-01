@@ -70,7 +70,7 @@ router.get('/adminpanel', async (req, res, next) => {
             const result = await db.getProductTypesByCategory(req.app.locals.header.categories[i]);
             products.push(result);
         }
-        console.log(products);
+        req.session.uploaditeration = 0;
         res.render('panel', {
             title: "Zalina | Yönetim Paneli", headers: req.app.locals.header.categories, productInfo: products
         });
