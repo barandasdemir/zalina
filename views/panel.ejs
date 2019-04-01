@@ -11,7 +11,6 @@
 <body>
 
     <nav class="nav-extended white">
-
         <div class="nav-wrapper" style="padding-top: 1.5em">
             <a href="/" class="brand-logo center">
                 <img style="width: 25%; border-radius: 5px;" class="responsive-img" src="/images/zalinalogo.png" />
@@ -20,12 +19,146 @@
         </div>
     </nav>
     <div class="container">
+<<<<<<< HEAD
         <%-include partials/panel/header.ejs %>
         <%if(index === 0) {%>
         <h5>İstatistik kısmı buraya gelecek.</h5>
         <%}else{%>
         <%- include partials/panel/addproduct.ejs %>
         <%}%>
+=======
+        <div class="row" style="margin-top: 5%;">
+            <div class="header center"> Yönetici Paneli </div>
+
+            <div class="col s12 m12 l12">
+                <div class=" collection white black-text">
+                    <a class="collection-item black-text" href="#">
+                        Ürün Ekle
+                        <span class="badge"><i class="tiny material-icons">email</i></span>
+                    </a>
+                    <a class="collection-item black-text" href="#">
+                        Duyuru & Kampanya Bildirileri
+                        <span class="badge"><i class="tiny material-icons">announcement</i></span>
+                    </a>
+                    <a class="collection-item black-text" href="#">
+                        E-Bülten Ayarları
+                        <span class="badge"><i class="tiny material-icons">email</i></span>
+                    </a>
+                    <a class="collection-item black-text" href="#">
+                            Geliştirici Ayarları
+                        <span class="badge"><i class="tiny material-icons">settings</i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col s12 m6 l6">
+                <div class="center" style="border-style: solid; border-width: 1px; border-color: green; padding: 10px;">
+                    <p>Ürün için stok adetlerini ayarlayınız..</p>
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <p>XSmall</p>
+                            <p class="range-field">
+                                <input type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <p>Small</p>
+                            <p class="range-field">
+                                <input type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <p>Medium</p>
+                            <p class="range-field">
+                                <input type="range" value="0" id="test55" min="0" max="2000" />
+                            </p>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <p>Large</p>
+                            <p class="range-field">
+                                <input type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <p>XLarge</p>
+                            <p class="range-field">
+                                <input type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <p>XXLarge</p>
+                            <p class="range-field">
+                                <input type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 50px;" class="col s12 m6 l6">
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <select>
+                            <%for(let i = 0; i < headers.length; i++){%>
+                            <optgroup label="<%=headers[i]%>">
+                                <%for(let j = 0; j < productInfo[i].length; j++){%>
+                                <option><%=productInfo[i][j]%></option>
+                                <%}%>
+                                            </optgroup>
+                                            <%}%>
+                        </select>
+                        <label>Kategori ve ürün tipi seçiniz</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <input placeholder="Ürün başlığı girin.." id="productDesc" type="text" class="validate">
+                        <label for="first_name">Ürün başlığı giriniz..</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <input placeholder="Ürün açıklaması girin.." id="productDesc" type="text" class="validate">
+                        <label for="first_name">Ürün açıklaması giriniz..</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 m6 l6">
+                        <select>
+                            <option value="" disabled selected>Para birimi seçiniz.. </option>
+                            <option value="1">Türk Lirası / TRY</option>
+                            <option value="2">Avro / EUR</option>
+                            <option value="3">Dolar / US Dollar</option>
+                            <option value="3">Rus Rublesi / RUB</option>
+                            <option value="3">Ukrayna Grivnası / UAH</option>
+                            <option value="3">Nijerya Nairası / NGN</option>
+                            <option value="3">Kenya Şilini / KES</option>
+
+                        </select>
+                        <label>Para birimi seçimi</label>
+                    </div>
+                    <div class="input-field col s6 m6 l6">
+                        <input placeholder="Ürün ücreti" id="productDesc" type="text" class="validate">
+                        <label for="first_name">Ürün için bir ücret giriniz..</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <a class="col s12 m2 l2 offset-l1 offset-m1 waves-effect waves-light green btn-small">Görsel
+                    yükle</a>
+                <a class="col s12 m2 l2 offset-l1 offset-m1 waves-effect waves-light green btn-small">Ürünü ekle</a>
+
+            </div>
+        </div>
+
+
+>>>>>>> 11f20a2e17be8a08f8c122238dea1231f4665473
     </div>
 </body>
 <%-include partials/panel/footer.ejs%>

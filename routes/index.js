@@ -69,7 +69,13 @@ router.get('/adminpanel', async (req, res, next) => {
 
         req.session.uploaditeration = 0;
         res.render('panel', {
+<<<<<<< HEAD
             title: "Zalina | Yönetim Paneli", index: 0
+=======
+            title: "Zalina | Yönetim Paneli",
+            headers: req.app.locals.header.categories,
+            productInfo: products
+>>>>>>> 11f20a2e17be8a08f8c122238dea1231f4665473
         });
     }
 })
