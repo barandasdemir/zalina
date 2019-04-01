@@ -64,15 +64,12 @@ router.get('/adminpanel', async (req, res, next) => {
         res.redirect('/login');
     }
     const user = await db.getUserById(req.session.userid);
+
     if (user.isAdmin) {
-        const products = [];
-        for (let i = 0; i < req.app.locals.header.categories.length; i++) {
-            const result = await db.getProductTypesByCategory(req.app.locals.header.categories[i]);
-            products.push(result);
-        }
+
         req.session.uploaditeration = 0;
         res.render('panel', {
-            title: "Zalina | Yönetim Paneli", headers: req.app.locals.header.categories, productInfo: products
+            title: "Zalina | Yönetim Paneli", index: 0
         });
     }
 })

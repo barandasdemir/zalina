@@ -1,8 +1,9 @@
 exports.up = function (knex, Promise) {
     return knex.schema.createTable('productColors', table => {
-        table.increments();
+        table.increments('id').primary();
+        table.string('name').notNullable();
         table.integer('product').unsigned().notNullable().references('products.id');
-        table.integer('color').notNullable().unsigned().references('colors.id');
+        table.integer('productCode').unsigned().notNullable();
     });
 };
 

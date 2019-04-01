@@ -7,7 +7,7 @@ const util = require('../lib/util');
 router.get('/:id', async (req, res, next) => {
     const product = await db.getProductById(req.params.id)
     if (product.length > 0) {
-        const colors = await db.getProductColors(req.params.id);
+        const colors = ['Mavi', 'Yeşil']; // değişmesi gerekiyor
         const sizes = await db.getProductSizes(req.params.id);
         res.render('product', {
             title: 'Zalina | Ürünler',

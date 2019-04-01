@@ -1,0 +1,135 @@
+<form class="row" action="/panel/addproduct" id="adminform" method="POST">
+
+            <div class="col s12 m6 l6">
+                <div id="changeinner" class="center"
+                    style="border-style: solid; border-width: 1px; border-color: green; padding: 10px;">
+                    <p>Ürün için stok adetlerini ayarlayınız..</p>
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <p>XSmall</p>
+                            <p class="range-field">
+                                <input name="xs" type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <p>Small</p>
+                            <p class="range-field">
+                                <input name="s" type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <p>Medium</p>
+                            <p class="range-field">
+                                <input name="m" type="range" value="0" id="test55" min="0" max="2000" />
+                            </p>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <p>Large</p>
+                            <p class="range-field">
+                                <input name="l" type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m6 l6">
+                            <p>XLarge</p>
+                            <p class="range-field">
+                                <input name="xl" type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <p>XXLarge</p>
+                            <p class="range-field">
+                                <input name="xxl" type="range" value="0" id="test5" min="0" max="2000" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 10px;" class="col s12 m6 l6">
+                <div id="pType" class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <select name="product_type" required>
+                            <%let temp = 1; %>
+                            <%for(let i = 0; i < headers.length; i++){%>
+                            <optgroup label="<%=headers[i]%>">
+                                <%for(let j = 0; j < productInfo[i].length; j++){%>
+                                <option value="<%=temp%>"><%=productInfo[i][j]%></option>
+                                <%temp+=1;%>
+                                <%}%>
+                                    </optgroup>
+                                    <%}%>
+                        </select>
+                        <label>Kategori ve ürün tipi seçiniz</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <input placeholder="Ürün başlığı girin.." name="product_title" id="productDesc" type="text"
+                            class="validate" required>
+                        <label for="first_name">Ürün başlığı giriniz..</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <input placeholder="Ürün rengini girin.." name="product_color" id="productDesc" type="text"
+                            class="validate" required>
+                        <label for="first_name">Ürünün rengini giriniz..</label>
+                        <p class="right" style="font-size: small;">İpucu! Aynı ürünün farklı renkleri için teker teker
+                            ürün
+                            ekleyebilirsiniz. </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <input placeholder="Ürün kodunu girin.." name="product_code" id="productDesc" type="number"
+                            class="validate" required>
+                        <label for="first_name">Ürünün kodunu giriniz.. </label>
+
+                        <p class="right red-text" style="font-size: small;">Dikkat! Mevcut bir ürünün farklı renkteki
+                            versiyonunu
+                            ekliyorsanız, mevcut ürünün ürün kodunu girmelisiniz!</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 m12 l12">
+                        <input placeholder="Ürün açıklaması girin.." name="product_desc" id="productDesc" type="text"
+                            class="validate" required>
+                        <label for="first_name">Ürün açıklaması giriniz..</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 m6 l6">
+                        <select name="money_type" required>
+                            <option value="" disabled selected>Para birimi seçiniz.. </option>
+                            <option value="1">Türk Lirası / TRY</option>
+                            <option value="2">Avro / EUR</option>
+                            <option value="4">Dolar / US Dollar</option>
+                            <option value="5">Rus Rublesi / RUB</option>
+                            <option value="6">Ukrayna Grivnası / UAH</option>
+                            <option value="7">Nijerya Nairası / NGN</option>
+                            <option value="8">Kenya Şilini / KES</option>
+
+                        </select>
+                        <label>Para birimi seçimi</label>
+                    </div>
+                    <div class="input-field col s6 m6 l6">
+                        <input placeholder="Ürün ücreti" name="product_price" type="number" class="validate" required>
+                        <label for="first_name">Ürün için bir ücret giriniz..</label>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        <div class="row">
+            <a class="col right s12 m2 l2 offset-l1 offset-m1 waves-effect waves-light green btn-small"
+                id="upload-file-fake"><span id="upinfo">Görsel
+                    yükle 0/5 </span></a>
+            <a id="addproduct"
+                class="col right s12 m2 l2 offset-l1 offset-m1 waves-effect waves-light green btn-small">Ürünü
+                ekle</a>
+            <input type="file" accept="image/jpg, image/png" name="productimage" style="display:none"
+                id="upload-file-real" />
+        </div>
