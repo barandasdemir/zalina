@@ -3,16 +3,26 @@ const router = express.Router();
 const db = require('../lib/db/queries');
 const multer = require('multer');
 const storage = multer.memoryStorage();
-const upload = multer({ storage: storage })
+const upload = multer({
+    storage: storage
+})
 const type = upload.single('productimage');
 const fs = require('fs-extra');
-// mounts to /login
-router.get('/', (req, res, next) => {
 
-    req.session.uploaditeration = 0;
-    res.redirect('/adminpanel');
+// mounts to /panel
+router.get('/', async (req, res, next) => {
+    if (!req.session.userid) {
+        res.redirect('/login');
+    }
 
-
+    const user = await db.getUserById(req.session.userid);
+    if (user.isAdmin) {
+        req.session.uploaditeration = 0;
+        res.render('panel', {
+            title: "Zalina | Yönetim Paneli",
+            index: 0
+        });
+    }
 });
 
 router.get('/add', async (req, res, next) => {
@@ -25,16 +35,16 @@ router.get('/add', async (req, res, next) => {
         }
         req.session.uploaditeration = 0;
         res.render('panel', {
-            title: "Zalina | Yönetim Paneli", headers: req.app.locals.header.categories, productInfo: products
-            , index: 1
+            title: "Zalina | Yönetim Paneli",
+            headers: req.app.locals.header.categories,
+            productInfo: products,
+            index: 1
         });
     }
 })
 router.post('/addproduct', (req, res, next) => {
     if (req.session.userid) {
-
         db.insertProduct(req.body).then(res => {
-
             const productid = res;
             if (fs.existsSync('./temp/' + req.session.userid) && req.session.uploaditeration > 0) {
                 fs.mkdirSync('./uploads/' + productid);
@@ -45,22 +55,21 @@ router.post('/addproduct', (req, res, next) => {
                 req.session.uploaditeration = 0;
 
             }
-        })
-
+        });
     }
     res.send('Ürün eklendi, bu sayfa daha sonra değişecek.');
 });
+
 router.post('/addimage', type, async (req, res, next) => {
     if (req.session.userid) {
 
         if (!fs.existsSync('./temp/' + req.session.userid) && req.session.uploaditeration === 0) {
             fs.mkdirSync('./temp/' + req.session.userid);
         }
-        await fs.writeFile('./temp/' + req.session.userid + "/" + req.session.uploaditeration + ".png", req.file.buffer).then
-            (err => {
-                req.session.uploaditeration += 1;
-                res.send('Uploaded to temp.');
-            })
+        await fs.writeFile('./temp/' + req.session.userid + "/" + req.session.uploaditeration + ".png", req.file.buffer).then(err => {
+            req.session.uploaditeration += 1;
+            res.send('Uploaded to temp.');
+        })
 
 
     }

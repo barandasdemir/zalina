@@ -3,6 +3,7 @@ exports.up = function (knex, Promise) {
         table.increments();
         table.integer('product').unsigned().notNullable().references('products.id');
         table.integer('size').notNullable().unsigned().references('sizes.id');
+        table.integer('stock').notNullable().default(0);
     });
 };
 

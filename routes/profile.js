@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../lib/db/queries');
 const util = require('../lib/util');
-const bcrypt = require('bcrypt');
 const yup = require('yup');
 const url = require('url');
 

@@ -21,11 +21,10 @@ router.post('/add', async (req, res, next) => {
         req.session.cart = [];
         req.session.cartQty = 0;
     }
-    // find item in cart based on id, color and size
+    // find item in cart based on id and size
     let idx = req.session.cart.findIndex(item => {
         return (
             item.id === product[0].id &&
-            item.color === req.body.color &&
             item.size === req.body.size
         );
     });
@@ -33,7 +32,7 @@ router.post('/add', async (req, res, next) => {
         product[0].qty = 1;
         product[0].totalPrice = product[0].price;
         product[0].size = req.body.size;
-        product[0].color = req.body.color;
+        product[0].color = await db.getProductColor(product[0].id);
         idx = req.session.cart.push(product[0]) - 1;
     } else {
         req.session.cart[idx].qty += 1;
@@ -74,7 +73,6 @@ router.post('/remove', (req, res, next) => {
 router.get('/checkout', (req, res, next) => {
     if (req.session.userid) {
         db.createOrder(req.session.userid, req.session.cart).then(() => {
-            // console.log('order completed');
             res.redirect('/profile/taken');
         })
     } else {

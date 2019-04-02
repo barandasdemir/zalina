@@ -12,19 +12,25 @@
         <h5>
             <%= product.price.toFixed(2) %> ₺</h5>
         <br><br>
-        <div class="input-field black-text colors">
-            <select>
-                <% colors.forEach((color, index) => { %>
-                <option value="<%= index %>"><%= color %></option>
-                <% }); %>
-            </select>
+
+        <div>
             <label>Renk</label>
+            <br>
+            <% colors.forEach((color, idx) => { %>
+            <a href="/product/<%= color.product %>" id="<%= color.id %>"
+                class="btn-flat <%= colorProps[idx] %> darken-3 color">
+                <% if (color.product === product.id) { %>
+                <i class="material-icons white-text">check</i>
+                <% }; %>
+            </a>
+            <% }); %>
         </div>
         <br>
+
         <div class="input-field black-text sizes">
             <select>
                 <% sizes.forEach((size, index) => { %>
-                <option value="<%= index %>"><%= size %></option>
+                <option value="<%= index %>"><%= size.name %></option>
                 <% }); %>
             </select>
             <label>Beden</label>

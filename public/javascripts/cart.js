@@ -28,14 +28,12 @@ $(document).ready(function () {
     $(".button-buy").click(() => {
         const loc = window.location.href.split('/');
         const selects = document.querySelectorAll('select');
-        const color = M.FormSelect.getInstance(selects[0]).$selectOptions.filter(opt => opt.selected)[0].innerText;
-        const size = M.FormSelect.getInstance(selects[1]).$selectOptions.filter(opt => opt.selected)[0].innerText;
+        const size = M.FormSelect.getInstance(selects[0]).$selectOptions.filter(opt => opt.selected)[0].innerText;
         $.ajax({
                 method: 'POST',
                 url: `/cart/add`,
                 data: {
                     id: loc[loc.length - 1],
-                    color,
                     size
                 }
             })
