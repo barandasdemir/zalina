@@ -1,11 +1,22 @@
 <%- include partials/header %>
 
 <div class="row">
-    <img src="https://images.unsplash.com/photo-1546650855-1d0a29c1a31d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80"
-        class="col s12 m3 offset-m1" />
-    <img src="https://images.unsplash.com/photo-1546650855-1d0a29c1a31d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80"
-        class="col s12 m3 " />
-    <div id="product" class="col s12 m3 section scrollspy">
+    <div class="col s12 m4 offset-m2 carousel carousel-slider">
+        <div class="carousel-item red white-text" href="#one!">
+            <img src="https://via.placeholder.com/800x900.jpg?text=insert+image+here+(1)" />
+        </div>
+        <div class="carousel-item amber white-text" href="#two!">
+            <img src="https://via.placeholder.com/900x400.jpg?text=insert+image+here+(2)" />
+        </div>
+        <div class="carousel-item green white-text" href="#three!">
+            <img src="https://via.placeholder.com/900x400.jpg?text=insert+image+here+(3)" />
+        </div>
+        <div class="carousel-item blue white-text" href="#four!">
+            <img src="https://via.placeholder.com/900x400.jpg?text=insert+image+here+(4)" />
+        </div>
+    </div>
+
+    <div id="product" class="col s12 m2 section scrollspy">
         <h4 class="productName">
             <%= product.name %>
         </h4>
@@ -35,7 +46,9 @@
             </select>
             <label>Beden</label>
         </div>
-        <br>
+
+        <% include partials/size-guide %>
+
         <a class="waves-effect waves-light btn button-buy light-green darken-4 white-text col s12 m12 valign-wrapper">
             <i class="material-icons left">shopping_cart</i>
             <b class="center">Ekle</b>
@@ -56,4 +69,4 @@
 </div>
 
 <%- include partials/footer %>
-<script src="/javascripts/cart.js"></script>
+<script src="/javascripts/product.js"></script>
