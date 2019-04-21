@@ -37,9 +37,11 @@ router.post('/addproduct', async (req, res, next) => {
     db.insertProduct(req.body).then(res => {
         const productid = res;
         if (fs.existsSync('./temp/' + req.session.userid) && req.session.uploaditeration > 0) {
-            fs.mkdirSync('./uploads/' + productid);
+            fs.mkdirSync('./public/products/' + productid, {
+                recursive: true
+            });
             for (var i = 0; i < req.session.uploaditeration; i++) {
-                fs.copyFileSync('./temp/' + req.session.userid + '/' + i + '.png', './uploads/' + productid + "/" + i + '.png');
+                fs.copyFileSync('./temp/' + req.session.userid + '/' + i + '.png', './public/products/' + productid + "/" + i + '.png');
             }
             fs.removeSync('./temp/' + req.session.userid);
             req.session.uploaditeration = 0;
@@ -50,7 +52,9 @@ router.post('/addproduct', async (req, res, next) => {
 
 router.post('/addimage', type, async (req, res, next) => {
     if (!fs.existsSync('./temp/' + req.session.userid) && req.session.uploaditeration === 0) {
-        fs.mkdirSync('./temp/' + req.session.userid);
+        fs.mkdirSync('./temp/' + req.session.userid, {
+            recursive: true
+        });
     }
     await fs.writeFile('./temp/' + req.session.userid + "/" + req.session.uploaditeration + ".png", req.file.buffer).then(err => {
         req.session.uploaditeration += 1;

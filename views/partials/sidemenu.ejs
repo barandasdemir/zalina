@@ -3,11 +3,11 @@
     <% sidemenu.forEach((item) => { %>
     <li class="collection-item">
         <%
-    let itemFixed = item.replace(/\s+/g, '-').replace(/\&+/g, '-').replace(/[-]+/gi, "-").trim().toLowerCase();
-    for (const key in trMap) {
-        itemFixed = itemFixed.replace(new RegExp('['+key+']','g'), trMap[key]);
-    }
-    %>
+        let itemFixed = item.replace(/\s+/g, '-').replace(/\&+/g, '-').replace(/[-]+/gi, "-").trim().toLowerCase();
+        for (const key in trMap) {
+            itemFixed = itemFixed.replace(new RegExp('['+key+']','g'), trMap[key]);
+        }
+        %>
         <a href="/<% if (category) { %><%= category %><% } %>/<%- itemFixed %>">
             <%= item %>
         </a>

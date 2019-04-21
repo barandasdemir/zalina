@@ -11,35 +11,35 @@
 
     <br><br><br>
 
-    <div class="center">
-
-        <% listing.forEach((item, index) => { %>
-        <% if (index % 4 === 0) { %>
-        <div class="row">
-            <% } %>
-            <div class="col s12 m3">
-                <div class="card z-depth-0">
-                    <a href="/product/<%= item.id %>">
-                        <div class="card-image">
-                            <img src="https://images.unsplash.com/photo-1546650855-1d0a29c1a31d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1576&q=80">
-
-                        </div>
-                        <div class="card-content center black-text">
+    <% listing.forEach((item, index) => { %>
+    <% if (index % 3 === 0) { %>
+    <div class="row">
+        <% } %>
+        <div class="col s12 m3 l2">
+            <div class="card z-depth-0">
+                <a href="/product/<%= item.id %>">
+                    <div class="card-image">
+                        <% if (item.picture) { %>
+                        <img src="/products/<%= item.id %>/0.png" />
+                        <% } else { %>
+                        <img src="https://via.placeholder.com/700x800.jpg?text=ürün-resmi-hazırlanıyor" />
+                        <% } %>
+                    </div>
+                    <div class="card-content center black-text">
                         <span class="card-title black-text">
                             <%= item.name %>
                         </span>
                         <p>
                             <%= item.price.toFixed(2) %> ₺
                         </p>
-                        </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
-            <% if (index % 4 === 3) { %>
         </div>
-        <% } %>
-        <% }); %>
+        <% if (index % 4 === 3) { %>
     </div>
+    <% } %>
+    <% }); %>
 </div>
 
 <%- include partials/footer %>

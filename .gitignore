@@ -62,3 +62,7 @@ typings/
 
 # vscode specific files
 .vscode
+
+# project specific directories
+temp/
+public/products/

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../lib/db/queries');
 const util = require('../lib/util');
+const fs = require('fs-extra');
 
 // mounts to /
 router.get('/', (req, res, next) => {
@@ -34,6 +35,8 @@ router.get('/:cat/:type?', (req, res, next) => {
                     if (typeIndex !== -1) {
                         // get that type's listing
                         db.getProductListing(header.categories[index], productType).then(listing => {
+                            listing.forEach(product => product.picture = fs.existsSync(`./public/products/${product.id}`));
+                            console.log(listing)
                             // then render it's listing page
                             res.render('product-listing', {
                                 title: `Zalina - ${productType}`,
