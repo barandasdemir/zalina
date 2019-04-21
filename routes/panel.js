@@ -12,9 +12,8 @@ const fs = require('fs-extra');
 // mounts to /panel
 router.get('/', async (req, res, next) => {
     req.session.uploaditeration = 0;
-    res.render('panel', {
+    res.render('panel/index', {
         title: "Zalina | Yönetim Paneli",
-        index: 0
     });
 });
 
@@ -25,11 +24,17 @@ router.get('/add', async (req, res, next) => {
         products.push(result);
     }
     req.session.uploaditeration = 0;
-    res.render('panel', {
+    res.render('panel/addproduct', {
         title: "Zalina | Yönetim Paneli",
         headers: req.app.locals.header.categories,
         productInfo: products,
-        index: 1
+    });
+});
+
+router.get('/edit', async (req, res, next) => {
+
+    res.render('panel/edit', {
+        title: "Zalina | Yönetim Paneli",
     });
 });
 
