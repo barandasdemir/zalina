@@ -38,14 +38,14 @@ router.get('/edit', async (req, res, next) => {
 });
 
 router.post('/edit', async (req, res, next) => {
-    const productInfo = [];
-    for (let i = 0; i < req.app.locals.header.categories.length; i++) {
-        const result = await db.getProductTypesByCategory(req.app.locals.header.categories[i]);
-        productInfo.push(result);
-    }
     const product = await db.getProductById(req.body.id);
-    product.color = await db.getProductColor(product.id);
     if (product) {
+        product.color = await db.getProductColor(product.id);
+        const productInfo = [];
+        for (let i = 0; i < req.app.locals.header.categories.length; i++) {
+            const result = await db.getProductTypesByCategory(req.app.locals.header.categories[i]);
+            productInfo.push(result);
+        }
         res.render('panel/product', {
             title: 'Zalina | Ürün Düzenleme',
             product,
