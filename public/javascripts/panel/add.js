@@ -7,7 +7,6 @@ let elem = document.querySelector('#upload-file-real');
 
 document.querySelector('#upload-file-fake').addEventListener('click', e => {
     elem.click();
-
 });
 
 request.addEventListener('load', function (e) {
@@ -55,4 +54,17 @@ document.querySelector("#addproduct").addEventListener("click", () => {
     }
 
     adminform.submit();
+});
+
+document.querySelector("#editFindForm").addEventListener("click", () => {
+    const eff = document.querySelector("#editFindForm");
+
+    for (var i = 0; i < eff.elements.length; i++) {
+        if (eff.elements[i].value === '' && eff.elements[i].hasAttribute('required')) {
+            alert('Bulmak istediğiniz ürünün ID numarasını girin');
+            return;
+        }
+    }
+
+    eff.submit();
 });

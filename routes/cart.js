@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 // mounts to /cart/add
 router.post('/add', async (req, res, next) => {
     const product = await db.getProductById(req.body.id);
-    if (product.length === 0) {
+    if (!product) {
         next();
     }
     // init cart if it does not exist
@@ -29,11 +29,11 @@ router.post('/add', async (req, res, next) => {
         );
     });
     if (idx === -1) {
-        product[0].qty = 1;
-        product[0].totalPrice = product[0].price;
-        product[0].size = req.body.size;
-        product[0].color = await db.getProductColor(product[0].id);
-        idx = req.session.cart.push(product[0]) - 1;
+        product.qty = 1;
+        product.totalPrice = product.price;
+        product.size = req.body.size;
+        product.color = await db.getProductColor(product.id);
+        idx = req.session.cart.push(product) - 1;
     } else {
         req.session.cart[idx].qty += 1;
         req.session.cart[idx].totalPrice = req.session.cart[idx].qty * req.session.cart[idx].price;
@@ -45,8 +45,6 @@ router.post('/add', async (req, res, next) => {
 // mounts to /cart/remove
 router.post('/remove', (req, res, next) => {
     if (req.session.cart) {
-        console.log(req.session.cart);
-        console.log(req.body);
         const idx = req.session.cart.findIndex(item => {
             return (
                 item.id === Number.parseInt(req.body.id) &&

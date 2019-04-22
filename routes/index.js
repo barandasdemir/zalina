@@ -36,7 +36,6 @@ router.get('/:cat/:type?', (req, res, next) => {
                         // get that type's listing
                         db.getProductListing(header.categories[index], productType).then(listing => {
                             listing.forEach(product => product.picture = fs.existsSync(`./public/products/${product.id}`));
-                            console.log(listing)
                             // then render it's listing page
                             res.render('product-listing', {
                                 title: `Zalina - ${productType}`,
