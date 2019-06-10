@@ -7,24 +7,21 @@ const fs = require('fs-extra');
 // mounts to /product/id
 router.get('/:id', async (req, res, next) => {
     const product = await db.getProductById(req.params.id);
+    console.log(product);
     if (product) {
         let pics;
         if (fs.existsSync(`./public/products/${product.id}`)) {
             pics = fs.readdirSync(`./public/products/${product.id}`);
+            console.log(product.id);
         }
+        console.log(pics);
         const colors = await db.getProductColorsByCode(product.productCode);
         const sizes = await db.getProductSizes(product.id);
-        const colorMap = {
-            'mavi': 'blue',
-            'yesil': 'green',
-            'mor': 'purple',
-        }
 
         res.render('product', {
             title: `Zalina | ${product.name}`,
             product,
             colors,
-            colorProps: colors.map(color => colorMap[util.toEn(color.name.toLowerCase())]),
             sizes: sizes.filter(size => size.stock > 0),
             pics,
         });
