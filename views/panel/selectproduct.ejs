@@ -1,0 +1,58 @@
+<%- include partials/header.ejs %>
+
+<div class="row center center-align">
+    <form method="POST" action="/panel/add">
+        <div class="input-field col s12 m12 l12">
+            <select name="values" required>
+                <%let temp = 1; %>
+                <%for(let i = 0; i < headers.length; i++){%>
+                <optgroup value="<%=headers[i]%>" name="title" label="<%=headers[i]%>">
+                    <%for(let j = 0; j < productInfo[i].length; j++){%>
+                    <option value="<%=headers[i]%>*<%=productInfo[i][j]%>*<%=temp%>%>"><%=productInfo[i][j]%>
+                    </option>
+                    <%temp+=1;%>
+                    <%}%>
+                    </optgroup>
+                    <%}%>
+            </select>
+            <label>Kategori ve ürün tipi seçiniz</label>
+        </div>
+        <div class="input-field col s12 m12 l12">
+            <select name="type" required>
+
+                    <option value="0">
+                     Beden yok / Ev tekstil & Züccaciye / Havlu
+                    </option>
+                    <option value="1">
+                    Klasik Beden Ölçüsü(XS, S, M, L, XL, XXL)
+                    </option>
+                    <option value="2">
+                    Çocuk Beden Ölçüsü
+                    </option>
+                    <option value="3">
+                    Bebek Beden Ölçüsü
+                    </option>
+                    <option value="4">
+                    Yetişkin Ayakkabı(36, 37, 38, 39, 40, 41, 42, 43, 44, 45)   
+                    </option>
+                    <option value="5">
+                    Çocuk Ayakkabı  
+                    </option>   
+                    <option value="6">
+                    Bebek Ayakkabı
+                    </option>
+                    <option value="7">
+                    İç Çamaşarı / Sütyen
+                    </option>
+                    <option value="8">
+                    İç Çamaşarı / Külod
+                    </option>
+
+            </select>
+            <label>Beden ölçü tipi seçiniz:</label>
+        </div>
+        <button class="center center-align waves-effect waves-light green btn-small">Devam
+            et</button>
+    </form>
+</div>
+<%-include partials/footer.ejs%>

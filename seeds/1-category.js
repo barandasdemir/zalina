@@ -11,7 +11,16 @@ exports.seed = function (knex, Promise) {
                     name: 'Erkek'
                 },
                 {
-                    name: 'Çocuk'
+                    name: 'Çocuk & Bebek'
+                },
+                {
+                    name: 'Deri & Kürk'
+                },
+                {
+                    name: 'Ev Tekstil'
+                },
+                {
+                    name: 'Züccaciye & Mutfak Eşyaları'
                 },
             ]);
         });

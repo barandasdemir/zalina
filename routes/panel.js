@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../lib/db/queries');
 const multer = require('multer');
 const storage = multer.memoryStorage();
+const type_model = require('../models/sizetype');
 const upload = multer({
     storage: storage
 })
@@ -17,19 +18,26 @@ router.get('/', async (req, res, next) => {
     });
 });
 
-router.get('/add', async (req, res, next) => {
+router.get('/selectcategory', async (req, res, next) => {
+
     const products = [];
     for (let i = 0; i < req.app.locals.header['tr'].categories.length; i++) {
         const result = await db.getProductTypesByCategory(req.app.locals.header['tr'].categories[i]);
         products.push(result);
     }
-    res.render('panel/addproduct', {
+    res.render('panel/selectproduct', {
         title: 'Zalina | Yönetim Paneli',
         headers: req.app.locals.header['tr'].categories,
         productInfo: products,
     });
 });
+router.post('/add', async (req, res, next) => {
 
+    type_model.get(req.body.type);
+    res.render('panel/addproduct', {
+        title: 'Zalina | Yönetim Paneli'
+    });
+});
 router.get('/edit', async (req, res, next) => {
     res.render('panel/edit', {
         title: 'Zalina | Ürün Düzenleme',
@@ -70,7 +78,9 @@ router.post('/edit/:id', async (req, res, next) => {
             res.send(err);
         });
 });
-
+router.get('/editcampanno', async (req, res, next) => {
+    res.render('panel/camp_anno');
+});
 router.post('/addproduct', async (req, res, next) => {
     db.insertProduct(req.body).then(res => {
         const productid = res;
@@ -85,7 +95,7 @@ router.post('/addproduct', async (req, res, next) => {
             req.session.uploaditeration = 0;
         }
     });
-    res.send('Ürün eklendi, bu sayfa daha sonra değişecek.');
+    res.send(req.body);
 });
 
 router.post('/addimage', type, async (req, res, next) => {

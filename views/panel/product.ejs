@@ -9,7 +9,8 @@
                     <% for (let i = 0; i < headers.length; i++){ %>
                     <optgroup label="<%= headers[i]%>">
                         <% for (let j = 0; j < productInfo[i].length; j++) { %>
-                        <option value="<%= temp %>" <% if (product.productType === temp) { %> selected <% } %>><%= productInfo[i][j] %></option>
+                        <option value="<%= temp %>" <% if (product.productType === temp) { %> selected <% } %>>
+                            <%= productInfo[i][j] %></option>
                         <% temp+=1; %>
                         <% } %>
                     </optgroup>
