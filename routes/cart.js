@@ -24,7 +24,7 @@ router.post('/add', async (req, res, next) => {
     // find item in cart based on id and size
     let idx = req.session.cart.findIndex(item => {
         return (
-            item.id === product[0].id &&
+            item.id === product.id &&
             item.size === req.body.size
         );
     });

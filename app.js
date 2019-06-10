@@ -7,7 +7,8 @@ const logger = require('morgan');
 const session = require('express-session');
 const locals = require('./locals');
 
-const authMiddleware = require('./middlewares/auth');
+const panelAuth = require('./middlewares/auth');
+const translator = require('./middlewares/translator');
 
 const indexRouter = require('./routes/index');
 const productRouter = require('./routes/product');
@@ -16,6 +17,7 @@ const loginRouter = require('./routes/login');
 const profileRouter = require('./routes/profile');
 const cartRouter = require('./routes/cart');
 const panelRouter = require('./routes/panel');
+const langRouter = require('./routes/lang');
 
 const app = express();
 
@@ -32,16 +34,19 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(session({ secret: 'zal', resave: false, saveUninitialized: false }));
 
 app.use((req, res, next) => {
+    req.session.siteLang = req.session.siteLang || 'tr';
     res.locals.session = req.session;
     next();
 });
+app.use(translator.siteTranslator);
 app.use('/', indexRouter);
 app.use('/register', registerRouter);
 app.use('/login', loginRouter);
 app.use('/product', productRouter);
 app.use('/profile', profileRouter);
 app.use('/cart', cartRouter);
-app.use('/panel', authMiddleware.isAdmin, panelRouter);
+app.use('/panel', panelAuth.isAdmin, panelRouter);
+app.use('/lang', langRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -63,6 +68,7 @@ app.use(function (err, req, res, next) {
 
 locals.then(locals => {
     app.locals = locals;
+    app.locals.translate = translator.translate;
 });
 
 module.exports = app;

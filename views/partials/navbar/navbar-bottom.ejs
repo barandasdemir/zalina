@@ -1,11 +1,7 @@
 <div class="nav-wrapper">
     <ul class="row">
         <div class="col offset-l3">
-            <!-- <ul id="dropdown-kadin" class="dropdown-content">
-                <li><a class="black-text" href="/kadin/giysi">Giysi</a>
-                <li><a class="black-text" href="/kadin/ayakkabi">Ayakkabı</a>
-            </ul> -->
-            <% header.categories.forEach((category, index) => { %>
+            <% header[headerLang].categories.forEach((category, index) => { %>
             <li class="col">
                 <a style="font-size: 12px" class="black-text" href="/<%= header.links[index] %>">
                     <%= category %>
@@ -17,7 +13,7 @@
         <div class="col right">
             <form>
                 <div class="input-field">
-                    <input id="search" type="search" style="height:auto" placeholder="Ürün ara" required>
+                    <input id="search" type="search" style="height:auto" placeholder="<%= session.siteText[session.siteLang].search %>" required>
                     <label class="label-icon black-text" for="search"><i class="material-icons black-text">search</i></label>
                 </div>
             </form>

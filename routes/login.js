@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 // mounts to /login
 router.get('/', (req, res, next) => {
     res.render('login', {
-        title: 'Zalina | Oturum aç',
+        title: util.title(req.session, 'login'),
         wrongPass: 0
     });
 });
@@ -21,7 +21,7 @@ router.post('/', (req, res, next) => {
                 res.redirect('/');
             } else {
                 res.render('login', {
-                    title: 'Zalina | Oturum aç',
+                    title: util.title(req.session, 'login'),
                     activeSession: -1,
                     wrongPass: 1
                 });

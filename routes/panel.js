@@ -19,13 +19,13 @@ router.get('/', async (req, res, next) => {
 
 router.get('/add', async (req, res, next) => {
     const products = [];
-    for (let i = 0; i < req.app.locals.header.categories.length; i++) {
-        const result = await db.getProductTypesByCategory(req.app.locals.header.categories[i]);
+    for (let i = 0; i < req.app.locals.header['tr'].categories.length; i++) {
+        const result = await db.getProductTypesByCategory(req.app.locals.header['tr'].categories[i]);
         products.push(result);
     }
     res.render('panel/addproduct', {
         title: 'Zalina | Yönetim Paneli',
-        headers: req.app.locals.header.categories,
+        headers: req.app.locals.header['tr'].categories,
         productInfo: products,
     });
 });
@@ -42,14 +42,14 @@ router.post('/edit', async (req, res, next) => {
     if (product) {
         product.color = await db.getProductColor(product.id);
         const productInfo = [];
-        for (let i = 0; i < req.app.locals.header.categories.length; i++) {
-            const result = await db.getProductTypesByCategory(req.app.locals.header.categories[i]);
+        for (let i = 0; i < req.app.locals.header['tr'].categories.length; i++) {
+            const result = await db.getProductTypesByCategory(req.app.locals.header['tr'].categories[i]);
             productInfo.push(result);
         }
         res.render('panel/product', {
             title: 'Zalina | Ürün Düzenleme',
             product,
-            headers: req.app.locals.header.categories,
+            headers: req.app.locals.header['tr'].categories,
             productInfo,
         });
     } else {

@@ -11,7 +11,7 @@
                 </ul>
             </div>
             <div class="col s4 m4">
-                <h5 class="white-text">Kurumsal</h5>
+                <h5 class="white-text"><%= session.siteText[session.siteLang].footer.corp %></h5>
                 <ul>
                     <li><a class="white-text" href="#!">Link 1</a></li>
                     <li><a class="white-text" href="#!">Link 2</a></li>
@@ -20,9 +20,9 @@
                 </ul>
             </div>
             <div class="col s4 m4">
-                <h5 class="white-text">Sosyal</h5>
+                <h5 class="white-text"><%= session.siteText[session.siteLang].profile.social %></h5>
                 <ul>
-                    <li><a class="white-text" href="#!">E-Bülten</a></li>
+                    <li><a class="white-text" href="#!"><%= session.siteText[session.siteLang].profile.mailList %></a></li>
                     <li><a class="white-text" href="#!">Facebook</a></li>
                     <li><a class="white-text" href="#!">Instagram</a></li>
                     <li><a class="white-text" href="#!">Twitter</a></li>

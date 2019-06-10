@@ -3,15 +3,17 @@ $(document).ready(function () {
         hover: true,
         coverTrigger: false
     });
-});
-
-$(document).ready(function () {
     $('select').formSelect();
-});
-
-$(document).ready(function () {
     $('.collapsible').collapsible();
-});
-$(document).ready(function () {
     $('.sidenav').sidenav();
+
+    $('.lang img').click((e) => {
+        $.ajax({
+            method: 'POST',
+            url: `/lang/${e.target.id}`,
+        })
+        .done(res => {
+            location.reload(true);
+        });
+    })
 });

@@ -72,3 +72,8 @@ form h5 {
 #sg-slide-out {
     width: 600px;
 }
+
+.lang img {
+    margin-left: 1em;
+    cursor: pointer;
+}

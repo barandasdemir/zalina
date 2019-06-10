@@ -2,7 +2,7 @@
 
 <div class="container cartwrapper">
     <br>
-    <h5 class="center"><b>ALIŞVERİŞ SEPETİ</b></h5>
+    <h5 class="center"><b><%= session.siteText[session.siteLang].cart.title %></b></h5>
     <br>
 
     <div class="row">
@@ -29,10 +29,10 @@
                             <!-- Ürün kodu:
                             <%= item.id %> -->
                         </p>
-                        <p>Beden: <%= item.size %></p>
-                        <p>Renk: <%= item.color %></p>
+                        <p><%= session.siteText[session.siteLang].cart.size %>: <%= item.size %></p>
+                        <p><%= session.siteText[session.siteLang].cart.color %>: <%= item.color %></p>
                         <p class="productTotal">
-                            Toplam:
+                            <%= session.siteText[session.siteLang].cart.total %>:
                             <%= item.totalPrice.toFixed(2) %> ₺
                         </p>
                         <div class="row valign-wrapper right">
@@ -48,16 +48,16 @@
             <% }); %>
         </div>
         <ul class="collection col s12 m4 cart">
-            <p class="center">Alışveriş sepeti toplamı</p>
+            <p class="center"><%= session.siteText[session.siteLang].cart.cartTotal %></p>
 
             <li class="collection-item total">
-                Sipariş değeri
+                <%= session.siteText[session.siteLang].cart.final %>
                 <div class="right">
                     <%= total.toFixed(2) %> ₺
                 </div>
             </li>
             <li class="collection-item total">
-                Toplam
+                <%= session.siteText[session.siteLang].cart.total %>
                 <div class="right">
                     <%= total.toFixed(2) %> ₺
                 </div>
@@ -67,12 +67,13 @@
                 refresh to update for now
             </li>
             <br>
-            <a href="/cart/checkout" class="waves-effect waves-light btn black col s12" style="margin-bottom:1em">Siparişi tamamla</a>
+            <a href="/cart/checkout" class="waves-effect waves-light btn black col s12"
+                style="margin-bottom:1em"><%= session.siteText[session.siteLang].cart.submit %></a>
         </ul>
     </div>
     <% } else { %>
-    <h6><b>Alışveriş sepetiniz boş!</b></h6>
-    <p>Alışveriş sepetinize ürün kaydetmek veya daha önce kaydedilmiş ürünlere erişmek için oturum açın.</p>
+    <h6><b><%= session.siteText[session.siteLang].cart.empty %></b></h6>
+    <p><%= session.siteText[session.siteLang].cart.emptyDetil %></p>
     <% } %>
 </div>
 </div>

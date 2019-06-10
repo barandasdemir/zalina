@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     if (req.session.userid)
         db.getUserInfoById(req.session.userid).then((result) => {
             res.render('profile', {
-                title: 'Zalina | Genel',
+                title: util.title(req.session, 'profile'),
                 cPage: 0,
                 email: req.session.email,
                 userInfo: result[0]
@@ -25,7 +25,6 @@ router.get('/update', (req, res, next) => {
             clientsurname: yup.string().required(),
             phonenumber: yup.number(),
             idnumber: yup.number()
-
         });
 
         const update_state = {
@@ -40,19 +39,17 @@ router.get('/update', (req, res, next) => {
                     db.updateUserInfo(req.session.userid, update_state);
                     db.getUserInfoById(req.session.userid).then((result) => {
                         res.render('profile', {
-                            title: 'Zalina | Kişisel Bilgiler',
+                            title: util.title(req.session, 'profileInfo'),
                             cPage: 1,
                             validation: true,
                             email: req.session.email,
                             userInfo: result[0]
                         });
-
-
                     });
                 } else {
                     db.getUserInfoById(req.session.userid).then((result) => {
                         res.render('profile', {
-                            title: 'Zalina | Kişisel Bilgiler',
+                            title: util.title(req.session, 'profileInfo'),
                             cPage: 1,
                             validation: false,
                             email: req.session.email,
@@ -60,18 +57,11 @@ router.get('/update', (req, res, next) => {
                         });
                     });
                 }
-
-
-
             });
         } catch (error) {
             console.log(error);
         }
-
-
-
     } else res.redirect('/login');
-
 });
 router.post("/add_address", (req, res, next) => {
     if (req.session.userid) {
@@ -84,7 +74,6 @@ router.post("/add_address", (req, res, next) => {
             content: yup.string().required()
 
         });
-        console.log(req.body);
         try {
             schema.isValid(req.body).then(valid => {
                 if (valid === true) {
@@ -101,7 +90,6 @@ router.post("/add_address", (req, res, next) => {
                     });
                 } else {
                     db.getUserInfoById(req.session.userid).then((result) => {
-
                         db.getAddress(req.session.userid).then(addressResult => {
                             res.redirect(url.format({
                                 pathname: "/profile/addresses",
@@ -110,17 +98,12 @@ router.post("/add_address", (req, res, next) => {
                                 }
                             }));
                         });
-
-
                     });
                 }
-
             });
         } catch (error) {
             console.log(error);
         }
-
-
     } else res.redirect('/login');
 });
 
@@ -130,7 +113,6 @@ router.get('/:param', async (req, res, next) => {
             case 'general':
                 {
                     db.getUserInfoById(req.session.userid).then((result) => {
-
                         res.render('profile', {
                             title: 'Zalina | Genel',
                             cPage: 0,
@@ -185,7 +167,6 @@ router.get('/:param', async (req, res, next) => {
                         });
                     });
                     break;
-
                 }
             default:
                 {
@@ -200,7 +181,7 @@ router.get('/taken/:id', async (req, res, next) => {
     const order = await db.getOrder(req.params.id);
     const result = await db.getUserInfoById(req.session.userid);
     res.render('profile', {
-        title: 'Zalina | Sipariş',
+        title: util.title(req.session, 'orders'),
         cPage: 4,
         userInfo: result[0],
         order

@@ -1,11 +1,11 @@
 <table class="col s6 offset-s1">
     <thead>
         <tr>
-            <th>Ürün adı</th>
+            <th><%= session.siteText[session.siteLang].orderDetails.product %></th>
             <!-- <th>Ürün Kodu</th> -->
-            <th>Adet</th>
-            <th>Fiyat</th>
-            <th>Toplam</th>
+            <th><%= session.siteText[session.siteLang].orderDetails.amount %></th>
+            <th><%= session.siteText[session.siteLang].orderDetails.cost %></th>
+            <th><%= session.siteText[session.siteLang].orderDetails.total %></th>
         </tr>
     </thead>
 

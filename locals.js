@@ -7,8 +7,11 @@ module.exports = new Promise(async (resolve, reject) => {
     const categories = await db.getCategories();
     const links = categories.map(category => util.toEn(category));
 
+    locals.headerLang = 'tr';
     locals.header = {
-        categories,
+        tr: {
+            categories,
+        },
         links
     }
 

@@ -7,42 +7,55 @@ const fs = require('fs-extra');
 // mounts to /
 router.get('/', (req, res, next) => {
     res.render('index', {
-        title: 'Zalina | Ana sayfa',
+        title: util.title(req.session, 'index')
     });
 });
 
 // mounts to /category/productType
 router.get('/:cat/:type?', (req, res, next) => {
-    const header = req.app.locals.header;
+    const {
+        translate,
+        header
+    } = req.app.locals;
     const isCategory = header.links.some((category, index) => {
         if (category === req.params.cat) {
-            return db.getProductTypesByCategory(header.categories[index]).then(types => {
+            return db.getProductTypesByCategory(header['tr'].categories[index]).then(async types => {
+                const sidemenu = await translate({
+                    ...types
+                }, req.session.siteLang);
                 if (!req.params.type) {
                     // product type is not specified
                     // render the category page
                     res.render('category', {
-                        title: `Zalina - ${header.categories[index]}`,
+                        title: header[req.session.siteLang].categories[index],
                         category,
-                        sidemenu: types
+                        sidemenu,
+                        sidemenuLinks: types,
                     });
                 } else {
                     const typeIndex = types
                         .map(type => util.toEn(type))
                         .findIndex(type => type === req.params.type);
-                    const productType = types[typeIndex];
+                    let productType = types[typeIndex];
 
                     // make sure the product type exists
                     if (typeIndex !== -1) {
                         // get that type's listing
-                        db.getProductListing(header.categories[index], productType).then(listing => {
+                        db.getProductListing(header['tr'].categories[index], productType).then(async listing => {
                             listing.forEach(product => product.picture = fs.existsSync(`./public/products/${product.id}`));
+                            productType = await translate(productType, req.session.siteLang);
+
                             // then render it's listing page
                             res.render('product-listing', {
-                                title: `Zalina - ${productType}`,
-                                category,
-                                sidemenu: types,
+                                title: productType,
+                                category: await translate(category, req.session.siteLang),
+                                sidemenu,
+                                sidemenuLinks: types,
                                 productType,
-                                listing
+                                listing,
+                                listingNames: await translate({
+                                    ...listing.map(item => item.name)
+                                }, req.session.siteLang)
                             });
                         });
                     } else {
