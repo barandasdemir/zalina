@@ -19,7 +19,6 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/selectcategory', async (req, res, next) => {
-
     const products = [];
     for (let i = 0; i < req.app.locals.header['tr'].categories.length; i++) {
         const result = await db.getProductTypesByCategory(req.app.locals.header['tr'].categories[i]);
@@ -31,13 +30,28 @@ router.get('/selectcategory', async (req, res, next) => {
         productInfo: products,
     });
 });
-router.post('/add', async (req, res, next) => {
 
-    type_model.get(req.body.type);
+router.post('/add', async (req, res, next) => {
+    const types = [
+        "notype",
+        "classic",
+        "childsize",
+        "babysize",
+        "shoes",
+        "childshoes",
+        "babyshoes",
+        "underwear-top",
+        "underwear-bottom"
+    ];
+
+    console.log(req.body);
     res.render('panel/addproduct', {
-        title: 'Zalina | Yönetim Paneli'
+        title: 'Zalina | Ürün Ekleme',
+        productType: req.body.values.split('*')[2],
+        stockType: types[req.body.type],
     });
 });
+
 router.get('/edit', async (req, res, next) => {
     res.render('panel/edit', {
         title: 'Zalina | Ürün Düzenleme',
@@ -78,9 +92,11 @@ router.post('/edit/:id', async (req, res, next) => {
             res.send(err);
         });
 });
+
 router.get('/editcampanno', async (req, res, next) => {
     res.render('panel/camp_anno');
 });
+
 router.post('/addproduct', async (req, res, next) => {
     db.insertProduct(req.body).then(res => {
         const productid = res;

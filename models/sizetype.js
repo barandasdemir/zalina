@@ -1,5 +1,4 @@
 module.exports = {
-
     get: id => {
         var result = '';
         console.log(id);

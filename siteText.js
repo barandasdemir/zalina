@@ -19,7 +19,7 @@ module.exports = {
     footer: {
         corp: 'Kurumsal',
         social: 'Sosyal',
-        mailList: 'E-Bülten<',
+        mailList: 'E-Bülten',
     },
     address: {
         title: 'Adres başlığı',

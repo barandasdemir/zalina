@@ -4,13 +4,13 @@
     <div class="col s12 m4 offset-m2 carousel carousel-slider">
         <% if (pics && pics.length > 0) { %>
         <% pics.forEach(pic => { %>
-        <div class="carousel-item red white-text">
+        <div class="carousel-item white white-text">
             <img src="/products/<%= product.id %>/<%= pic %>" />
         </div>
         <% }); %>
         <% } else { %>
         <div class="carousel-item red white-text">
-            <img src="https://via.placeholder.com/800x900.jpg?text=ürün-resmi-hazırlanıyor" />
+            <img src="https://via.placeholder.com/800x900.jpg?text=Ürün+resmi+hazırlanıyor" />
         </div>
         <% } %>
     </div>

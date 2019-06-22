@@ -12,12 +12,10 @@ router.get('/:id', async (req, res, next) => {
         let pics;
         if (fs.existsSync(`./public/products/${product.id}`)) {
             pics = fs.readdirSync(`./public/products/${product.id}`);
-            console.log(product.id);
         }
-        console.log(pics);
         const colors = await db.getProductColorsByCode(product.productCode);
         const sizes = await db.getProductSizes(product.id);
-
+console.log(colors);
         res.render('product', {
             title: `Zalina | ${product.name}`,
             product,
