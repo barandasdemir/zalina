@@ -13,7 +13,7 @@ module.exports = {
     docker: {
         client: 'mysql2',
         connection: {
-            host: 'docker.db', // mariadb container's ip OR it's handle in hosts file
+            host: 'zalina.db', // mariadb container's ip OR it's handle in hosts file
             database: 'zalina',
             user: 'zalina',
             password: '123',
