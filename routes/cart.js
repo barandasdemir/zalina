@@ -69,10 +69,11 @@ router.post('/remove', (req, res, next) => {
 });
 
 router.get('/checkout', (req, res, next) => {
-    if (req.session.userid) {
+    console.log(req.session.cart)
+    if (req.session.cart) {
         db.createOrder(req.session.userid, req.session.cart).then(() => {
             res.redirect('/profile/taken');
-        })
+        });
     } else {
         res.send('there\'s no user logged in, will handle this later. go back');
     }

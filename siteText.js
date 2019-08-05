@@ -45,6 +45,7 @@ module.exports = {
         amount: 'Adet',
         cost: 'Fiyat',
         total: 'Toplam',
+        back: 'Geri',
     },
     orders: {
         order: 'Sipariş Numarası',
