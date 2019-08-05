@@ -8,5 +8,16 @@ module.exports = {
             password: '123',
             charset: 'utf8'
         }
+    },
+
+    docker: {
+        client: 'mysql2',
+        connection: {
+            host: 'docker.db', // mariadb container's ip OR it's handle in hosts file
+            database: 'zalina',
+            user: 'zalina',
+            password: '123',
+            charset: 'utf8'
+        }
     }
 };
