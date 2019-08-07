@@ -44,7 +44,6 @@ router.post('/add', async (req, res, next) => {
         "underwear-bottom"
     ];
 
-    console.log(req.body);
     res.render('panel/addproduct', {
         title: 'Zalina | Ürün Ekleme',
         productType: req.body.values.split('*')[2],
@@ -68,11 +67,14 @@ router.post('/edit', async (req, res, next) => {
             const result = await db.getProductTypesByCategory(req.app.locals.header['tr'].categories[i]);
             productInfo.push(result);
         }
+
+        const stock = await db.getProductStock(req.body.id);
         res.render('panel/product', {
             title: 'Zalina | Ürün Düzenleme',
             product,
             headers: req.app.locals.header['tr'].categories,
             productInfo,
+            stock,
         });
     } else {
         res.render('panel/edit', {
@@ -91,6 +93,10 @@ router.post('/edit/:id', async (req, res, next) => {
         .catch((err) => {
             res.send(err);
         });
+});
+
+router.post('/remove', async (req, res, next) => {
+    // check foreign key constraints
 });
 
 router.get('/editcampanno', async (req, res, next) => {

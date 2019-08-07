@@ -1,10 +1,8 @@
-<div class="col s12 m6 l6">
-    <div id="changeinner" class="center" style="border-style: solid; border-width: 1px; border-color: green; padding: 10px;">
-        <p>Ürün için stok adetini ayarlayınız</p>
-        <div class="row">
-            <div class="col s6 offset-s3">
-                <input id="stock" name="stock" type="number" class="validate center" value="0" />
-            </div>
+<div id="changeinner" class="center" style="border-style: solid; border-width: 1px; border-color: green; padding: 10px;">
+    <p>Ürün için stok adetini ayarlayınız</p>
+    <div class="row">
+        <div class="col s6 offset-s3">
+            <input id="stock" name="stock" type="number" class="validate center" value="<%- typeof stocks === 'undefined' ? 0 : stocks[0] %>" />
         </div>
     </div>
 </div>

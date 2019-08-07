@@ -24,4 +24,11 @@ $(document).ready(function () {
 
         eff.submit();
     });
+
+    $("#delete").click(() => {
+        const form = document.querySelector("#editform");
+        const id = form.attributes['action'].value.split('/')[3];
+
+        alert('work in progress');
+    });
 });

@@ -1,7 +1,10 @@
 <%- include partials/header.ejs %>
 
 <form class="row" action="/panel/edit/<%= product.id %>" id="editform" method="POST">
-    <div style="margin-top: 10px;" class="col s12 m6 l6 offset-m3 offset-l3">
+    <div class="col s6 m6 l6">
+        <%- include(`partials/types/${stock.type}`, {stocks: stock.stocks}); %>
+    </div>
+    <div class="col s6 m6 l6">
         <div id="pType" class="row">
             <div class="input-field col s12 m12 l12">
                 <select name="product_type" required>
@@ -22,29 +25,25 @@
 
         <div class="row">
             <div class="input-field col s12 m12 l12">
-                <input value="<%= product.name %>" placeholder="" name="product_title" id="productDesc" type="text"
-                    class="validate" required>
+                <input value="<%= product.name %>" placeholder="" name="product_title" id="productDesc" type="text" class="validate" required>
                 <label for="first_name">Ürün başlığı</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12 m12 l12">
-                <input value="<%= product.color %>" placeholder="" name="product_color" id="productDesc" type="text"
-                    class="validate" required>
+                <input value="<%= product.color %>" placeholder="" name="product_color" id="productDesc" type="text" class="validate" required>
                 <label for="first_name">Ürün rengi</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12 m12 l12">
-                <input value="<%= product.productCode %>" placeholder="" name="product_code" id="productDesc"
-                    type="number" class="validate" required>
+                <input value="<%= product.productCode %>" placeholder="" name="product_code" id="productDesc" type="number" class="validate" required>
                 <label for="first_name">Ürün kodu</label>
             </div>
         </div>
         <div class="row">
             <div class="input-field col s12 m12 l12">
-                <input value="<%= product.description %>" placeholder="" name="product_desc" id="productDesc"
-                    type="text" class="validate" required>
+                <input value="<%= product.description %>" placeholder="" name="product_desc" id="productDesc" type="text" class="validate" required>
                 <label for="first_name">Ürün açıklaması</label>
             </div>
         </div>
@@ -64,13 +63,21 @@
                 <label>Para birimi</label>
             </div>
             <div class="input-field col s6 m6 l6">
-                <input value="<%= product.price %>" placeholder="" name="product_price" type="number" class="validate"
-                    required>
+                <input value="<%= product.price %>" placeholder="" name="product_price" type="number" class="validate" required>
                 <label for="product_price">Ürün fiyatı</label>
             </div>
         </div>
     </div>
-    <a id="edit" class="col s12 m6 l6 offset-m3 offset-l3 waves-effect waves-light green btn-small">Ürünü kaydet</a>
+    <div class="row">
+        <a id="edit" class="col right s12 m3 l3 offset-l1 offset-m1 waves-effect waves-light green btn-small">
+            <i class="large material-icons left">save</i>
+            Ürünü kaydet
+        </a>
+        <a id="delete" class="col right s12 m3 l3 waves-effect waves-light red btn-small">
+            <i class="large material-icons left">delete_forever</i>
+            Ürünü kaldır
+        </a>
+    </div>
 </form>
 
 <%-include partials/footer.ejs%>
