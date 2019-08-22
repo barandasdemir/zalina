@@ -84,6 +84,13 @@ router.post('/edit', async (req, res, next) => {
     }
 });
 
+router.get('/manageorders', async (req, res, next) => 
+{
+
+   const result = await db.getOrders();
+
+})
+
 router.post('/edit/:id', async (req, res, next) => {
     req.body.id = req.params.id;
     db.updateProduct(req.body)
