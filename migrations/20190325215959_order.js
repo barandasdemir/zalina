@@ -2,7 +2,8 @@ exports.up = function (knex, Promise) {
     return knex.schema.createTable('orders', table => {
         table.increments();
         table.integer('user').unsigned().notNullable().references('users.id');
-        table.integer('trackingnumber').defaultTo(-1);
+        table.string('company');
+        table.bigint('trackingnumber').unsigned().defaultTo(0);
         table.timestamp('date').defaultTo(knex.fn.now());
     });
 };

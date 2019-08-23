@@ -84,10 +84,73 @@ router.post('/edit', async (req, res, next) => {
     }
 });
 
+router.post('/manageorders', async (req, res, next) =>
+{
+        try
+        {
+            console.log(req.body);
+            console.log(req.query);
+                if('q' in req.query)
+                {
+                    if(req.query.q === '1')
+                    {
+                        const result = await db.updateOrder(req.query.orderId, req.body.cargono, req.body.cargoname);
+                        
+                            console.log(result);
+                            res.redirect('/panel/manageorders');
+                    }
+                    else
+                    {
+                        res.redirect('/panel/manageorders');
+                    }
+                }
+         
+        
+        
+        }
+        catch(err)
+        {
+              res.redirect('/panel/manageorders');
+        }
+
+    
+})
+
 router.get('/manageorders', async (req, res, next) => 
 {
-
    const result = await db.getOrders();
+   if(Array.from(result).length > 0)
+   {
+      const orders_array = Array.from(result);
+      console.log(orders_array);
+      const details = [];
+      for(let i = 0; i<orders_array.length; i++)
+      {
+        const result = await db.getOrder(orders_array[i].id);
+        result[0].orderId = orders_array[i].id;
+        result[0].userId = orders_array[i].user;
+        result[0].trackingNumber = orders_array[i].trackingnumber;
+        result[0].company = orders_array[i].company;
+        details.push(result[0]);
+      }
+      console.log(details);
+      res.render('panel/order', {ordersresult: details, page: 0});
+
+   }
+   
+
+})
+
+
+router.get('/acceptorder', async (req, res, next) => 
+{
+    const user_detail = await db.getUserById(req.query.user);
+    const user_adress = await db.getAddress(req.query.user);
+    console.log(user_adress);
+    const order_detail = await db.getOrder(req.query.id);
+    order_detail[0].orderId = req.query.id;
+    const result = {order: order_detail, address: user_adress, detail: user_detail};
+    res.render('panel/order', {result: result, page: 1});
 
 })
 
